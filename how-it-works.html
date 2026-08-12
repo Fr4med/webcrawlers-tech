@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How GEO Autopilot works — the full mechanism — GEO Autopilot</title>
+<meta name="description" content="GEO Autopilot runs a ten-stage measured loop: crawl, audit, entity mapping, prompt universe, content briefs, AI answer benchmarking, gated publishing with rollback, and a five-stage visibility funnel. Here is each stage in detail.">
+<link rel="canonical" href="https://webcrawlers.tech/how-it-works">
+<link rel="icon" type="image/png" href="/assets/logo.png">
+<link rel="stylesheet" href="/assets/site.css">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://webcrawlers.tech/how-it-works">
+<meta property="og:title" content="How GEO Autopilot works — the full mechanism">
+<meta property="og:description" content="The ten-stage loop behind GEO Autopilot: from polite crawling to gated publishing with verified rollback and a five-stage AI-visibility funnel.">
+<meta property="og:image" content="https://webcrawlers.tech/assets/hero.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How GEO Autopilot works — the full mechanism",
+  "description": "The ten-stage loop behind GEO Autopilot: from polite crawling to gated publishing with verified rollback and a five-stage AI-visibility funnel.",
+  "url": "https://webcrawlers.tech/how-it-works",
+  "datePublished": "2026-08-12",
+  "dateModified": "2026-08-12",
+  "author": { "@type": "Person", "name": "Adam Krestol" },
+  "publisher": { "@id": "https://webcrawlers.tech/#org" }
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="/">
+      <svg viewBox="0 0 32 32" fill="none" stroke="#2dd4bf" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <circle cx="16" cy="16" r="10.5"/><circle cx="16" cy="16" r="5.5" stroke-dasharray="2.8 3.4"/>
+        <path d="M16 1.5v5M16 25.5v5M1.5 16h5M25.5 16h5"/><path d="M16 16l4.2-4.2" stroke-width="2"/>
+        <circle cx="16" cy="16" r="1.4" fill="#2dd4bf" stroke="none"/>
+      </svg>
+      GEO&nbsp;Autopilot
+    </a>
+    <span class="links">
+      <a href="/what-is-geo">What is GEO?</a>
+      <a href="/how-it-works" aria-current="page">How it works</a>
+      <a href="/faq">FAQ</a>
+      <a href="/#audit" class="btn ghost" style="padding:9px 18px; font-size:13.5px;">Free audit</a>
+    </span>
+  </div>
+</nav>
+
+<main class="article">
+  <header>
+    <span class="eyebrow">The mechanism</span>
+    <h1>How GEO Autopilot works</h1>
+    <p class="meta">By Adam Krestol · Updated 2026-08-12</p>
+  </header>
+
+  <p><strong>GEO Autopilot is a pipeline of ten stages that runs on a schedule, each stage producing evidence
+  the next one uses.</strong> Nothing in it is a black box: every run has an id, every claim has a source,
+  every change has a backup and a diff, and every metric is either measured or explicitly reported as
+  not-yet-measurable. This page walks through the loop stage by stage.</p>
+
+  <h2>1. Crawl — see your site the way machines do</h2>
+  <p>A polite, rate-limited crawler inventories every reachable page: status codes, titles, headings, links,
+  canonical tags, structured data, render weight. It respects robots.txt and never hammers your server. The
+  result is a complete inventory the rest of the pipeline works from.</p>
+
+  <h2>2. Audit — technical eligibility, per crawler</h2>
+  <p>Thirty-plus checks answer one question: can search and AI crawlers access, interpret and index this site?
+  Alongside the classic checks (sitemaps, canonicals, redirects, metadata, structured-data validity), the audit
+  builds a <em>crawler policy matrix</em>: for each relevant bot — Googlebot, Bingbot, GPTBot, OAI-SearchBot,
+  ClaudeBot, PerplexityBot, Google-Extended and more — whether your robots policy allows it, blocks it, or
+  blocks it by accident.</p>
+
+  <h2>3. Entity mapping — establish the facts</h2>
+  <p>The system extracts who you are from your own site: brand name, offerings, locations, contact points,
+  and every stated fact about the business. These go into a <em>source-of-truth registry</em> with a source,
+  a verification date and a confidence score. This registry is what keeps later stages honest — content is
+  assembled from verified facts, never invented.</p>
+
+  <h2>4. Prompt universe — the questions that matter</h2>
+  <p>Starting from your offerings and audience, the system builds intent clusters: the questions real buyers
+  ask AI assistants, each with a seed query, fan-out sub-questions (the way engines decompose questions
+  internally), phrasing variants, funnel stage, and the answer format engines prefer for that intent.
+  This becomes both the test set for benchmarking and the demand map for content planning.</p>
+
+  <h2>5. Scoring &amp; opportunities — where to act first</h2>
+  <p>Every page is scored on ten factors covering answerability, evidence density, entity clarity, freshness
+  and technical health. Cross-referencing scores against the prompt universe yields a ranked opportunity list:
+  intents no page addresses, pages one fix away from citable, and technical blockers with sitewide impact.</p>
+
+  <h2>6. Produce — briefs and the claim ledger</h2>
+  <p>For each unanswered intent, the system generates a <em>content brief</em>: a complete work order
+  specifying target prompts, required structure, internal links, schema, and — critically — the evidence
+  requirements. Every material claim a future page will make must first exist as a row in the
+  <em>claim ledger</em> with a source and verification date. Briefs demand unique information gain
+  (first-party data, tested procedures, transparent methodology) and real, named authors. Rewritten
+  commodity content is explicitly forbidden — engines have no reason to cite the hundredth copy of
+  the same advice.</p>
+
+  <h2>7. Benchmark — ask the engines and record the answers</h2>
+  <p>The prompt universe is tested against AI platforms on a budget-capped schedule. For every prompt we
+  record the full answer, which URLs it cited, whether your domain was among them, whether your brand was
+  mentioned, and how you were characterized. Detection of citations and mentions is deterministic string and
+  domain matching — never a model's guess. Over time this yields the metric that matters: citation share
+  per buyer question.</p>
+
+  <h2>8. Publish — gated changes with verified rollback</h2>
+  <p>Low-risk technical fixes (robots policy, sitemaps, metadata, structured data) can ship automatically,
+  but only through a gate: current state recorded → backup written → diff generated → quality checks passed →
+  change applied → live URL re-fetched and verified. If live verification fails, the change rolls back
+  automatically. Anything the gate cannot approve becomes a ready-to-apply patch for human review instead.
+  Every change is reversible with one command.</p>
+
+  <h2>9. Measure — a five-stage funnel, no fake scores</h2>
+  <p>AI visibility is reported as five separately-measured stages:</p>
+  <ol>
+    <li><strong>Crawlability</strong> — can engines fetch you? (measured from server behavior and policy)</li>
+    <li><strong>Indexation</strong> — are you in the indexes engines retrieve from?</li>
+    <li><strong>Retrieval</strong> — do you appear in the sources engines consider?</li>
+    <li><strong>Citation</strong> — are you cited or recommended in actual answers?</li>
+    <li><strong>Conversion</strong> — do AI-referred visitors arrive and act?</li>
+  </ol>
+  <p>Each stage is timestamped against a baseline taken before work began. A stage that cannot be measured
+  yet (for example, before analytics access is connected) is reported as exactly that — never estimated,
+  never blended into a made-up composite score.</p>
+
+  <h2>10. Monitor — protect what was won</h2>
+  <p>Daily checks watch for uptime problems, robots or noindex regressions, and facts approaching their
+  review date. Weekly benchmarks track answer drift. Monthly full audits catch what daily checks cannot.
+  Every run ends in an executive report: what changed, what was measured, what is blocked and by what,
+  and what happens next.</p>
+
+  <h2>The safety posture, in one paragraph</h2>
+  <p>Dry-run is the default everywhere — the system proposes and shows diffs unless production mode is
+  explicitly enabled. Applied changes require a backup and pass live verification or roll back on their own.
+  Budgets cap crawl rate, content volume and benchmarking spend per run. And the claim ledger means the
+  system cannot fabricate facts about your business even in fully automatic mode: if a fact is not verified,
+  it does not ship.</p>
+
+  <p><a class="btn" style="margin-top:14px" href="/#audit">Get a free AI-visibility audit</a></p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 GEO Autopilot · Generative Engine Optimization, done honestly.</span>
+    <span class="fl">
+      <a href="/what-is-geo">What is GEO?</a>
+      <a href="/how-it-works">How it works</a>
+      <a href="/faq">FAQ</a>
+      <a href="mailto:adamkrestol@gmail.com">adamkrestol@gmail.com</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
