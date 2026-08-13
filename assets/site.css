@@ -14,7 +14,7 @@ a:focus-visible, button:focus-visible { outline:2px solid var(--accent2); outlin
 nav { position:sticky; top:0; z-index:10; backdrop-filter:blur(12px); background:rgba(10,11,14,.75); border-bottom:1px solid var(--border); }
 nav .wrap { display:flex; align-items:center; justify-content:space-between; height:64px; }
 .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:-.02em; font-size:18px; color:var(--text); }
-.brand svg { width:28px; height:28px; }
+.brand svg, .brand img { width:28px; height:28px; }
 nav .links { display:flex; gap:26px; align-items:center; font-size:14px; color:var(--muted); }
 nav .links a { color:var(--muted); transition:color .15s; } nav .links a:hover { color:var(--text); }
 nav .links a[aria-current="page"] { color:var(--accent); }
@@ -32,6 +32,13 @@ nav .links a[aria-current="page"] { color:var(--accent); }
 .hero::after { content:""; position:absolute; inset:0;
   background:linear-gradient(90deg, rgba(10,11,14,.96) 0%, rgba(10,11,14,.82) 45%, rgba(10,11,14,.35) 100%); }
 .hero .wrap { position:relative; z-index:1; padding:110px 28px 120px; max-width:1120px; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero::before { transition:transform 6s ease, opacity 1.2s ease; transform-origin:center right; }
+  .hero:hover::before { transform:scale(1.06); opacity:.7; }
+  h1 em { background-size:200% auto; }
+  .hero:hover h1 em { animation:shimmer 2.4s linear infinite; }
+  @keyframes shimmer { to { background-position:200% center; } }
+}
 .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.12em;
   text-transform:uppercase; color:var(--accent); border:1px solid rgba(94,234,212,.35); background:rgba(94,234,212,.07);
   border-radius:999px; padding:6px 14px; }

@@ -1,17 +1,17 @@
-# GEO Autopilot
+# WebCrawlers
 
-> GEO Autopilot is a Generative Engine Optimization service: it audits how AI
-> crawlers see a website, fixes what blocks them through a safety-gated
-> publishing pipeline, benchmarks real buyer questions against AI search
-> engines, and reports visibility as a five-stage measured funnel. Every
-> change is backed up, verified live, and reversible; unmeasurable metrics
-> are reported as unmeasurable, never estimated.
+> WebCrawlers gets businesses seen in AI answers. It checks how AI systems
+> (ChatGPT, Gemini, Perplexity and their crawlers) read a website, fixes what
+> blocks them through a safety-gated pipeline with backups and one-click undo,
+> tests the real questions buyers ask AI, and reports visibility as a
+> five-stage measured funnel. Unmeasurable metrics are reported as
+> unmeasurable, never estimated.
 
-Contact: adamkrestol@gmail.com
+Contact: https://webcrawlers.tech/#audit
 
 ## Pages
 
-- [Home](https://webcrawlers.tech/): what the service does and what you get
+- [Home](https://webcrawlers.tech/): the problem ("can't be seen on ChatGPT") and what WebCrawlers does about it
 - [What is GEO?](https://webcrawlers.tech/what-is-geo): definition, GEO vs SEO, and the measurable inputs that influence AI citations
 - [How it works](https://webcrawlers.tech/how-it-works): the ten-stage pipeline mechanism, safety gates, and funnel measurement
 - [FAQ](https://webcrawlers.tech/faq): honest answers, including what nobody can promise about AI search
