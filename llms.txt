@@ -7,7 +7,7 @@
 > five-stage measured funnel. Unmeasurable metrics are reported as
 > unmeasurable, never estimated.
 
-Contact: https://webcrawlers.tech/#audit
+Contact: hello@webcrawlers.tech
 
 ## Pages
 
