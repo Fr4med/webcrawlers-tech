@@ -11,7 +11,8 @@ Contact: hello@webcrawlers.tech
 
 ## Pages
 
-- [Home](https://webcrawlers.tech/): the problem ("can't be seen on ChatGPT") and what WebCrawlers does about it
+- [Home](https://webcrawlers.tech/): the problem ("can't be seen on ChatGPT"), what WebCrawlers does about it, and pricing (also in [Hebrew](https://webcrawlers.tech/he/), [German](https://webcrawlers.tech/de/), [French](https://webcrawlers.tech/fr/))
 - [What is GEO?](https://webcrawlers.tech/what-is-geo): definition, GEO vs SEO, and the measurable inputs that influence AI citations
 - [How it works](https://webcrawlers.tech/how-it-works): the ten-stage pipeline mechanism, safety gates, and funnel measurement
+- [AI visibility audit pricing](https://webcrawlers.tech/ai-visibility-audit-pricing): real 2026 market prices with sources, what an audit must include, red flags
 - [FAQ](https://webcrawlers.tech/faq): honest answers, including what nobody can promise about AI search

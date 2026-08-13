@@ -99,6 +99,34 @@ details summary:hover { color:var(--accent); }
 details .a { padding:0 22px 20px; color:#c6cbd9; font-size:15.5px; }
 details .a p { margin:0 0 10px; }
 
+/* Pricing */
+.plans { grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); align-items:stretch; }
+.plan { display:flex; flex-direction:column; }
+.plan .price { font-size:34px; font-weight:800; letter-spacing:-.03em; margin:2px 0 14px; color:var(--text); }
+.plan .price span { font-size:14px; font-weight:600; color:var(--muted); letter-spacing:0; }
+.plan ul { list-style:none; padding:0; margin:0 0 22px; flex:1; }
+.plan li { position:relative; padding:6px 0 6px 26px; color:var(--muted); font-size:14px; }
+.plan li::before { content:"✓"; position:absolute; left:2px; color:var(--accent2); font-weight:800; }
+.plan li strong { color:var(--text); }
+.plan .btn { text-align:center; }
+.plan.featured { border-color:rgba(94,234,212,.45); box-shadow:0 0 40px rgba(94,234,212,.08); position:relative; }
+.plan.featured::before { content:"Most popular"; position:absolute; top:-11px; left:22px; font-size:11px; font-weight:800;
+  letter-spacing:.08em; text-transform:uppercase; color:#04211c; background:linear-gradient(90deg, var(--accent), #7dd3fc);
+  border-radius:999px; padding:4px 12px; }
+[dir="rtl"] .plan li { padding:6px 26px 6px 0; }
+[dir="rtl"] .plan li::before { left:auto; right:2px; }
+[dir="rtl"] .plan.featured::before { left:auto; right:22px; }
+
+/* Language switcher */
+.langs { display:inline-flex; gap:2px; border:1px solid var(--border); border-radius:999px; padding:3px; }
+.langs a { padding:4px 10px; border-radius:999px; font-size:12.5px; font-weight:700; color:var(--muted); }
+.langs a:hover { color:var(--text); }
+.langs a[aria-current="page"] { background:rgba(94,234,212,.12); color:var(--accent); }
+
+/* RTL (Hebrew) */
+[dir="rtl"] .hero::before { background-position:center left; transform-origin:center left; }
+[dir="rtl"] .hero::after { background:linear-gradient(270deg, rgba(10,11,14,.96) 0%, rgba(10,11,14,.82) 45%, rgba(10,11,14,.35) 100%); }
+
 .contact-panel { background:linear-gradient(180deg, var(--panel2), var(--panel)); border:1px solid var(--border);
   border-radius:18px; padding:34px; max-width:560px; }
 .contact-panel p { color:var(--muted); font-size:15px; margin:0 0 18px; }
