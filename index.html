@@ -10,6 +10,8 @@
 <link rel="alternate" hreflang="he" href="https://webcrawlers.tech/he/">
 <link rel="alternate" hreflang="de" href="https://webcrawlers.tech/de/">
 <link rel="alternate" hreflang="fr" href="https://webcrawlers.tech/fr/">
+<link rel="alternate" hreflang="pl" href="https://webcrawlers.tech/pl/">
+<link rel="alternate" hreflang="sv" href="https://webcrawlers.tech/sv/">
 <link rel="alternate" hreflang="x-default" href="https://webcrawlers.tech/">
 <link rel="icon" type="image/png" href="/assets/logo.png">
 <link rel="stylesheet" href="/assets/site.css">
@@ -54,7 +56,7 @@
       <a href="/how-it-works">How it works</a>
       <a href="#pricing">Pricing</a>
       <a href="/faq">FAQ</a>
-      <span class="langs" aria-label="Language"><a href="/" aria-current="page">EN</a><a href="/he/" lang="he">עב</a><a href="/de/" lang="de">DE</a><a href="/fr/" lang="fr">FR</a></span>
+      <span class="langs" aria-label="Language"><a href="/" aria-current="page">EN</a><a href="/he/" lang="he">עב</a><a href="/de/" lang="de">DE</a><a href="/fr/" lang="fr">FR</a><a href="/pl/" lang="pl">PL</a><a href="/sv/" lang="sv">SV</a></span>
       <a href="#audit" class="btn ghost" style="padding:9px 18px; font-size:13.5px;">Free check</a>
     </span>
   </div>
@@ -218,18 +220,21 @@
   <div class="wrap" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:48px; align-items:start;">
     <div>
       <h2>Find out what AI says about you — free</h2>
-      <p class="lede" style="margin-bottom:18px">One email. No obligation. You get back a plain-English report:
+      <p class="lede" style="margin-bottom:18px">One minute. No obligation. You get back a plain-English report:
       whether AI can see your business today, what it currently tells your customers, and what we'd fix first.</p>
     </div>
-    <div class="contact-panel">
-      <p>Tell us your company name and your website (if you have one). That's all we need to run the first check.</p>
-      <a class="btn" href="mailto:hello@webcrawlers.tech?subject=Free%20AI%20visibility%20check">Request my free check</a>
-      <div class="contact-reveal">
-        <code id="contact-addr">hello@webcrawlers.tech</code>
-        <button class="btn ghost" id="contact-copy" type="button">Copy</button>
-      </div>
-      <p style="margin:14px 0 0; font-size:13px;">The button opens your email app — or just copy the address.</p>
-    </div>
+    <form class="contact-panel" id="lead-form" novalidate>
+      <label for="lead-name">Your name or company *</label>
+      <input id="lead-name" name="name" required maxlength="120" placeholder="Northlight Ltd.">
+      <label for="lead-email">Email *</label>
+      <input id="lead-email" name="email" type="email" required maxlength="200" placeholder="you@example.com">
+      <label for="lead-note">Anything we should know? (your website, what you sell…)</label>
+      <textarea id="lead-note" name="note" maxlength="1000"></textarea>
+      <input class="hp" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div style="margin-top:20px"><button class="btn" type="submit">Request my free check</button></div>
+      <p id="lead-msg" role="status"></p>
+      <p style="margin:12px 0 0; font-size:13px;">Prefer email? <a href="mailto:hello@webcrawlers.tech">hello@webcrawlers.tech</a></p>
+    </form>
   </div>
 </section>
 
@@ -246,14 +251,30 @@
 </footer>
 
 <script>
-document.getElementById("contact-copy").addEventListener("click", async (e) => {
-  try {
-    await navigator.clipboard.writeText("hello@webcrawlers.tech");
-    e.target.textContent = "Copied!";
-    setTimeout(() => { e.target.textContent = "Copy"; }, 2000);
-  } catch {
-    /* clipboard blocked — the address is selectable text right next to the button */
+const leadForm = document.getElementById("lead-form");
+const leadMsg = document.getElementById("lead-msg");
+const LEAD_MSGS = {
+  sending: "Sending…",
+  ok: "Got it — your free check is on its way. We'll reply by email.",
+  err: "Something went wrong — please email hello@webcrawlers.tech instead.",
+  invalid: "Please fill in your name and a valid email.",
+};
+leadForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(leadForm).entries());
+  data.lang = document.documentElement.lang || "en";
+  if (!String(data.name ?? "").trim() || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(data.email ?? ""))) {
+    leadMsg.className = "err"; leadMsg.textContent = LEAD_MSGS.invalid; return;
   }
+  leadMsg.className = ""; leadMsg.textContent = LEAD_MSGS.sending;
+  try {
+    const r = await fetch("https://webcrawlers-leads.adamkrestol.workers.dev/lead", {
+      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(data),
+    });
+    const out = await r.json().catch(() => ({}));
+    if (r.ok && out.ok) { leadMsg.className = "ok"; leadMsg.textContent = LEAD_MSGS.ok; leadForm.reset(); }
+    else { leadMsg.className = "err"; leadMsg.textContent = out.error || LEAD_MSGS.err; }
+  } catch { leadMsg.className = "err"; leadMsg.textContent = LEAD_MSGS.err; }
 });
 </script>
 </body>

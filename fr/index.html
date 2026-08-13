@@ -10,6 +10,8 @@
 <link rel="alternate" hreflang="he" href="https://webcrawlers.tech/he/">
 <link rel="alternate" hreflang="de" href="https://webcrawlers.tech/de/">
 <link rel="alternate" hreflang="fr" href="https://webcrawlers.tech/fr/">
+<link rel="alternate" hreflang="pl" href="https://webcrawlers.tech/pl/">
+<link rel="alternate" hreflang="sv" href="https://webcrawlers.tech/sv/">
 <link rel="alternate" hreflang="x-default" href="https://webcrawlers.tech/">
 <link rel="icon" type="image/png" href="/assets/logo.png">
 <link rel="stylesheet" href="/assets/site.css">
@@ -55,7 +57,7 @@
       <a href="/how-it-works">Comment ça marche</a>
       <a href="#pricing">Tarifs</a>
       <a href="/faq">FAQ</a>
-      <span class="langs" aria-label="Langue"><a href="/">EN</a><a href="/he/" lang="he">עב</a><a href="/de/" lang="de">DE</a><a href="/fr/" lang="fr" aria-current="page">FR</a></span>
+      <span class="langs" aria-label="Langue"><a href="/">EN</a><a href="/he/" lang="he">עב</a><a href="/de/" lang="de">DE</a><a href="/fr/" lang="fr" aria-current="page">FR</a><a href="/pl/" lang="pl">PL</a><a href="/sv/" lang="sv">SV</a></span>
       <a href="#audit" class="btn ghost" style="padding:9px 18px; font-size:13.5px;">Audit gratuit</a>
     </span>
   </div>
@@ -219,18 +221,21 @@
   <div class="wrap" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:48px; align-items:start;">
     <div>
       <h2>Découvrez ce que l'IA dit de vous — gratuitement</h2>
-      <p class="lede" style="margin-bottom:18px">Un e-mail. Aucun engagement. Vous recevez un rapport clair :
+      <p class="lede" style="margin-bottom:18px">Une minute. Aucun engagement. Vous recevez un rapport clair :
       si l'IA voit votre entreprise aujourd'hui, ce qu'elle raconte à vos clients, et ce que nous corrigerions en premier.</p>
     </div>
-    <div class="contact-panel">
-      <p>Indiquez-nous le nom de votre entreprise et votre site (si vous en avez un). C'est tout ce qu'il faut pour le premier audit.</p>
-      <a class="btn" href="mailto:hello@webcrawlers.tech?subject=Free%20AI%20visibility%20check">Demander mon audit gratuit</a>
-      <div class="contact-reveal">
-        <code id="contact-addr">hello@webcrawlers.tech</code>
-        <button class="btn ghost" id="contact-copy" type="button">Copier</button>
-      </div>
-      <p style="margin:14px 0 0; font-size:13px;">Le bouton ouvre votre messagerie — ou copiez simplement l'adresse.</p>
-    </div>
+    <form class="contact-panel" id="lead-form" novalidate>
+      <label for="lead-name">Votre nom ou votre entreprise *</label>
+      <input id="lead-name" name="name" required maxlength="120" placeholder="Northlight Ltd.">
+      <label for="lead-email">E-mail *</label>
+      <input id="lead-email" name="email" type="email" required maxlength="200" placeholder="you@example.com">
+      <label for="lead-note">Quelque chose à savoir ? (votre site, ce que vous vendez…)</label>
+      <textarea id="lead-note" name="note" maxlength="1000"></textarea>
+      <input class="hp" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div style="margin-top:20px"><button class="btn" type="submit">Demander mon audit gratuit</button></div>
+      <p id="lead-msg" role="status"></p>
+      <p style="margin:12px 0 0; font-size:13px;">Vous préférez l'e-mail ? <a href="mailto:hello@webcrawlers.tech">hello@webcrawlers.tech</a></p>
+    </form>
   </div>
 </section>
 
@@ -247,14 +252,30 @@
 </footer>
 
 <script>
-document.getElementById("contact-copy").addEventListener("click", async (e) => {
-  try {
-    await navigator.clipboard.writeText("hello@webcrawlers.tech");
-    e.target.textContent = "Copié !";
-    setTimeout(() => { e.target.textContent = "Copier"; }, 2000);
-  } catch {
-    /* clipboard blocked — the address is selectable text right next to the button */
+const leadForm = document.getElementById("lead-form");
+const leadMsg = document.getElementById("lead-msg");
+const LEAD_MSGS = {
+  sending: "Envoi…",
+  ok: "Bien reçu — votre audit gratuit est en route. Nous répondrons par e-mail.",
+  err: "Un problème est survenu — écrivez-nous à hello@webcrawlers.tech.",
+  invalid: "Merci d'indiquer votre nom et un e-mail valide.",
+};
+leadForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(leadForm).entries());
+  data.lang = document.documentElement.lang || "en";
+  if (!String(data.name ?? "").trim() || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(data.email ?? ""))) {
+    leadMsg.className = "err"; leadMsg.textContent = LEAD_MSGS.invalid; return;
   }
+  leadMsg.className = ""; leadMsg.textContent = LEAD_MSGS.sending;
+  try {
+    const r = await fetch("https://webcrawlers-leads.adamkrestol.workers.dev/lead", {
+      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(data),
+    });
+    const out = await r.json().catch(() => ({}));
+    if (r.ok && out.ok) { leadMsg.className = "ok"; leadMsg.textContent = LEAD_MSGS.ok; leadForm.reset(); }
+    else { leadMsg.className = "err"; leadMsg.textContent = out.error || LEAD_MSGS.err; }
+  } catch { leadMsg.className = "err"; leadMsg.textContent = LEAD_MSGS.err; }
 });
 </script>
 </body>

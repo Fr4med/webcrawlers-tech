@@ -130,6 +130,16 @@ details .a p { margin:0 0 10px; }
 .contact-panel { background:linear-gradient(180deg, var(--panel2), var(--panel)); border:1px solid var(--border);
   border-radius:18px; padding:34px; max-width:560px; }
 .contact-panel p { color:var(--muted); font-size:15px; margin:0 0 18px; }
+.contact-panel label { display:block; font-size:13px; font-weight:600; color:var(--muted); margin:16px 0 6px; }
+.contact-panel label:first-child { margin-top:0; }
+.contact-panel input, .contact-panel textarea { width:100%; background:#0c0e13; color:var(--text);
+  border:1px solid var(--border2); border-radius:12px; padding:12px 14px; font:inherit; font-size:15px;
+  outline:none; transition:border-color .15s, box-shadow .15s; }
+.contact-panel input:focus, .contact-panel textarea:focus { border-color:var(--accent2); box-shadow:0 0 0 3px rgba(45,212,191,.15); }
+.contact-panel textarea { min-height:84px; resize:vertical; }
+.hp { position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden; }
+#lead-msg { margin:14px 0 0; font-size:14px; min-height:20px; }
+#lead-msg.ok { color:var(--good); } #lead-msg.err { color:#f87171; }
 .contact-reveal { display:flex; gap:10px; align-items:center; margin-top:16px; flex-wrap:wrap; }
 .contact-reveal code { background:#0c0e13; border:1px solid var(--border2); border-radius:10px;
   padding:10px 14px; color:var(--accent); font-size:15px; user-select:all; }
