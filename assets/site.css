@@ -102,7 +102,10 @@ details .a p { margin:0 0 10px; }
 .contact-panel { background:linear-gradient(180deg, var(--panel2), var(--panel)); border:1px solid var(--border);
   border-radius:18px; padding:34px; max-width:560px; }
 .contact-panel p { color:var(--muted); font-size:15px; margin:0 0 18px; }
-.contact-panel .email { font-size:19px; font-weight:700; }
+.contact-reveal { display:flex; gap:10px; align-items:center; margin-top:16px; flex-wrap:wrap; }
+.contact-reveal code { background:#0c0e13; border:1px solid var(--border2); border-radius:10px;
+  padding:10px 14px; color:var(--accent); font-size:15px; user-select:all; }
+.contact-reveal .btn.ghost { padding:9px 16px; font-size:13.5px; }
 
 footer { border-top:1px solid var(--border); padding:34px 0 46px; color:var(--muted); font-size:13.5px; }
 footer .wrap { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:center; }

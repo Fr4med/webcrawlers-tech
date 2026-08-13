@@ -60,7 +60,7 @@
       If AI doesn't know your business, it sends them to someone else.
       WebCrawlers gets you into those answers — and shows you the proof.</p>
     <div class="cta-row">
-      <a class="btn contact-mail" href="#audit">Get my free AI visibility check</a>
+      <a class="btn" href="#audit">Get my free AI visibility check</a>
       <a class="btn ghost" href="/how-it-works">See how it works</a>
     </div>
     <p class="trust">
@@ -163,7 +163,11 @@
     <div class="contact-panel">
       <p>Tell us your company name and your website (if you have one). That's all we need to run the first check.</p>
       <a class="btn contact-mail" href="#audit">Request my free check</a>
-      <p style="margin:14px 0 0; font-size:13px;">The button opens your email app — no forms, no signup.</p>
+      <div class="contact-reveal" id="contact-reveal" hidden>
+        <code id="contact-addr"></code>
+        <button class="btn ghost" id="contact-copy" type="button">Copy</button>
+      </div>
+      <p style="margin:14px 0 0; font-size:13px;">The button opens your email app. If nothing opens, the address appears above so you can copy it.</p>
     </div>
   </div>
 </section>
@@ -181,16 +185,31 @@
 </footer>
 
 <script>
-// Contact address is assembled on click so it is never written in the page
-// (owner asked not to display it; scrapers can't harvest it either).
+// Contact address is assembled only on click so it is never written in the
+// page (owner asked not to display it; scrapers can't harvest it either).
+// mailto: fails silently when no mail app is configured, so the address is
+// also revealed with a copy button — the click always produces visible feedback.
+const contactAddr = () => "lotserkmada".split("").reverse().join("") + "@" + ["gmail", "com"].join(".");
 for (const el of document.querySelectorAll(".contact-mail")) {
   el.addEventListener("click", (e) => {
     e.preventDefault();
-    const a = "lotserkmada".split("").reverse().join("");
-    const b = ["gmail", "com"].join(".");
-    location.href = "mailto:" + a + "@" + b + "?subject=" + encodeURIComponent("Free AI visibility check — " + location.hostname);
+    const a = contactAddr();
+    const reveal = document.getElementById("contact-reveal");
+    document.getElementById("contact-addr").textContent = a;
+    reveal.hidden = false;
+    document.querySelector(".contact-panel").scrollIntoView({ behavior: "smooth", block: "center" });
+    location.href = "mailto:" + a + "?subject=" + encodeURIComponent("Free AI visibility check — " + location.hostname);
   });
 }
+document.getElementById("contact-copy").addEventListener("click", async (e) => {
+  try {
+    await navigator.clipboard.writeText(contactAddr());
+    e.target.textContent = "Copied!";
+    setTimeout(() => { e.target.textContent = "Copy"; }, 2000);
+  } catch {
+    /* clipboard blocked — the address is selectable text right next to the button */
+  }
+});
 </script>
 </body>
 </html>
