@@ -52,7 +52,7 @@ h1 em { font-style:normal; background:linear-gradient(90deg, var(--accent), #7dd
 section { padding:88px 0; } section.alt { background:linear-gradient(180deg, transparent, rgba(94,234,212,.03), transparent); }
 h2 { font-size:clamp(24px, 3vw, 34px); letter-spacing:-.03em; font-weight:800; margin:0 0 10px; }
 .lede { color:var(--muted); max-width:640px; margin-bottom:44px; }
-.grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); }
+.grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
 .card { background:linear-gradient(180deg, var(--panel2), var(--panel)); border:1px solid var(--border);
   border-radius:16px; padding:26px; transition:border-color .18s, transform .18s; }
 .card:hover { border-color:var(--border2); transform:translateY(-2px); }
@@ -110,7 +110,7 @@ details .a p { margin:0 0 10px; }
 .plan li strong { color:var(--text); }
 .plan .btn { text-align:center; }
 .plan.featured { border-color:rgba(94,234,212,.45); box-shadow:0 0 40px rgba(94,234,212,.08); position:relative; }
-.plan.featured::before { content:"Most popular"; position:absolute; top:-11px; left:22px; font-size:11px; font-weight:800;
+.plan.featured::before { content:"Repair sprint"; position:absolute; top:-11px; left:22px; font-size:11px; font-weight:800;
   letter-spacing:.08em; text-transform:uppercase; color:#04211c; background:linear-gradient(90deg, var(--accent), #7dd3fc);
   border-radius:999px; padding:4px 12px; }
 [dir="rtl"] .plan li { padding:6px 26px 6px 0; }
@@ -129,6 +129,7 @@ details .a p { margin:0 0 10px; }
 
 .contact-panel { background:linear-gradient(180deg, var(--panel2), var(--panel)); border:1px solid var(--border);
   border-radius:18px; padding:34px; max-width:560px; }
+.contact-layout { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap:48px; align-items:start; }
 .contact-panel p { color:var(--muted); font-size:15px; margin:0 0 18px; }
 .contact-panel label { display:block; font-size:13px; font-weight:600; color:var(--muted); margin:16px 0 6px; }
 .contact-panel label:first-child { margin-top:0; }
@@ -149,3 +150,14 @@ footer { border-top:1px solid var(--border); padding:34px 0 46px; color:var(--mu
 footer .wrap { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:center; }
 footer nav2, footer .fl { display:flex; gap:18px; flex-wrap:wrap; }
 footer .fl a { color:var(--muted); } footer .fl a:hover { color:var(--text); }
+
+@media (max-width: 760px) {
+  nav .wrap { height:auto; min-height:64px; padding-top:10px; padding-bottom:10px; flex-wrap:wrap; gap:10px; }
+  nav .links { width:100%; overflow-x:auto; white-space:nowrap; gap:14px; padding-bottom:4px; }
+  nav .links > a, .langs a { min-height:44px; display:inline-flex; align-items:center; }
+  .hero .wrap { padding-top:76px; padding-bottom:78px; }
+  section { padding:64px 0; }
+  .contact-panel { padding:22px; }
+  .article { padding-top:56px; }
+  .article table { display:block; overflow-x:auto; }
+}

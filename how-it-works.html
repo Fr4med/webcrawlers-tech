@@ -3,152 +3,40 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>How WebCrawlers works — the full mechanism — WebCrawlers</title>
-<meta name="description" content="WebCrawlers runs a ten-stage measured loop: crawl, audit, entity mapping, prompt universe, content briefs, AI answer benchmarking, gated publishing with rollback, and a five-stage visibility funnel. Here is each stage in detail.">
+<title>How the WebCrawlers pilot works</title>
+<meta name="description" content="The supervised WebCrawlers pilot: agree on a small site, inspect the pages, approve specific repairs, and review the live result.">
 <link rel="canonical" href="https://webcrawlers.tech/how-it-works">
 <link rel="icon" type="image/png" href="/assets/logo.png">
 <link rel="stylesheet" href="/assets/site.css">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://webcrawlers.tech/how-it-works">
-<meta property="og:title" content="How WebCrawlers works — the full mechanism">
-<meta property="og:description" content="The ten-stage loop behind WebCrawlers: from polite crawling to gated publishing with verified rollback and a five-stage AI-visibility funnel.">
+<meta property="og:title" content="How the WebCrawlers pilot works">
+<meta property="og:description" content="A supervised website inspection and repair sprint for small businesses.">
 <meta property="og:image" content="https://webcrawlers.tech/assets/hero.png">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "How WebCrawlers works — the full mechanism",
-  "description": "The ten-stage loop behind WebCrawlers: from polite crawling to gated publishing with verified rollback and a five-stage AI-visibility funnel.",
-  "url": "https://webcrawlers.tech/how-it-works",
-  "datePublished": "2026-08-12",
-  "dateModified": "2026-08-13",
-  "author": { "@type": "Person", "name": "Adam Krestol" },
-  "publisher": { "@id": "https://webcrawlers.tech/#org" }
-}
-</script>
 </head>
 <body>
-
-<nav>
-  <div class="wrap">
-    <a class="brand" href="/">
-      <img src="/assets/logo.png" alt="" width="28" height="28" style="display:block">
-      WebCrawlers
-    </a>
-    <span class="links">
-      <a href="/what-is-geo">What is GEO?</a>
-      <a href="/how-it-works" aria-current="page">How it works</a>
-      <a href="/faq">FAQ</a>
-      <a href="/#pricing">Pricing</a>
-      <a href="/#audit" class="btn ghost" style="padding:9px 18px; font-size:13.5px;">Free audit</a>
-    </span>
-  </div>
-</nav>
-
+<nav><div class="wrap">
+  <a class="brand" href="/"><img src="/assets/logo.png" alt="" width="28" height="28">WebCrawlers</a>
+  <span class="links"><a href="/what-is-geo">What is GEO?</a><a href="/how-it-works" aria-current="page">How it works</a><a href="/faq">FAQ</a><a href="/#pricing">Pricing</a><a href="/#audit" class="btn ghost">Discuss a pilot</a></span>
+</div></nav>
 <main class="article">
-  <header>
-    <span class="eyebrow">The mechanism</span>
-    <h1>How WebCrawlers works</h1>
-    <p class="meta">By Adam Krestol · Updated 2026-08-13</p>
-  </header>
-
-  <p><strong>WebCrawlers is a pipeline of ten stages that runs on a schedule, each stage producing evidence
-  the next one uses.</strong> Nothing in it is a black box: every run has an id, every claim has a source,
-  every change has a backup and a diff, and every metric is either measured or explicitly reported as
-  not-yet-measurable. This page walks through the loop stage by stage.</p>
-
-  <h2>1. Crawl — see your site the way machines do</h2>
-  <p>A polite, rate-limited crawler inventories every reachable page: status codes, titles, headings, links,
-  canonical tags, structured data, render weight. It respects robots.txt and never hammers your server. The
-  result is a complete inventory the rest of the pipeline works from.</p>
-
-  <h2>2. Audit — technical eligibility, per crawler</h2>
-  <p>Thirty-plus checks answer one question: can search and AI crawlers access, interpret and index this site?
-  Alongside the classic checks (sitemaps, canonicals, redirects, metadata, structured-data validity), the audit
-  builds a <em>crawler policy matrix</em>: for each relevant bot — Googlebot, Bingbot, GPTBot, OAI-SearchBot,
-  ClaudeBot, PerplexityBot, Google-Extended and more — whether your robots policy allows it, blocks it, or
-  blocks it by accident.</p>
-
-  <h2>3. Entity mapping — establish the facts</h2>
-  <p>The system extracts who you are from your own site: brand name, offerings, locations, contact points,
-  and every stated fact about the business. These go into a <em>source-of-truth registry</em> with a source,
-  a verification date and a confidence score. This registry is what keeps later stages honest — content is
-  assembled from verified facts, never invented.</p>
-
-  <h2>4. Prompt universe — the questions that matter</h2>
-  <p>Starting from your offerings and audience, the system builds intent clusters: the questions real buyers
-  ask AI assistants, each with a seed query, fan-out sub-questions (the way engines decompose questions
-  internally), phrasing variants, funnel stage, and the answer format engines prefer for that intent.
-  This becomes both the test set for benchmarking and the demand map for content planning.</p>
-
-  <h2>5. Scoring &amp; opportunities — where to act first</h2>
-  <p>Every page is scored on ten factors covering answerability, evidence density, entity clarity, freshness
-  and technical health. Cross-referencing scores against the prompt universe yields a ranked opportunity list:
-  intents no page addresses, pages one fix away from citable, and technical blockers with sitewide impact.</p>
-
-  <h2>6. Produce — briefs and the claim ledger</h2>
-  <p>For each unanswered intent, the system generates a <em>content brief</em>: a complete work order
-  specifying target prompts, required structure, internal links, schema, and — critically — the evidence
-  requirements. Every material claim a future page will make must first exist as a row in the
-  <em>claim ledger</em> with a source and verification date. Briefs demand unique information gain
-  (first-party data, tested procedures, transparent methodology) and real, named authors. Rewritten
-  commodity content is explicitly forbidden — engines have no reason to cite the hundredth copy of
-  the same advice.</p>
-
-  <h2>7. Benchmark — ask the engines and record the answers</h2>
-  <p>The prompt universe is tested against AI platforms on a budget-capped schedule. For every prompt we
-  record the full answer, which URLs it cited, whether your domain was among them, whether your brand was
-  mentioned, and how you were characterized. Detection of citations and mentions is deterministic string and
-  domain matching — never a model's guess. Over time this yields the metric that matters: citation share
-  per buyer question.</p>
-
-  <h2>8. Publish — gated changes with verified rollback</h2>
-  <p>Low-risk technical fixes (robots policy, sitemaps, metadata, structured data) can ship automatically,
-  but only through a gate: current state recorded → backup written → diff generated → quality checks passed →
-  change applied → live URL re-fetched and verified. If live verification fails, the change rolls back
-  automatically. Anything the gate cannot approve becomes a ready-to-apply patch for human review instead.
-  Every change is reversible with one command.</p>
-
-  <h2>9. Measure — a five-stage funnel, no fake scores</h2>
-  <p>AI visibility is reported as five separately-measured stages:</p>
-  <ol>
-    <li><strong>Crawlability</strong> — can engines fetch you? (measured from server behavior and policy)</li>
-    <li><strong>Indexation</strong> — are you in the indexes engines retrieve from?</li>
-    <li><strong>Retrieval</strong> — do you appear in the sources engines consider?</li>
-    <li><strong>Citation</strong> — are you cited or recommended in actual answers?</li>
-    <li><strong>Conversion</strong> — do AI-referred visitors arrive and act?</li>
-  </ol>
-  <p>Each stage is timestamped against a baseline taken before work began. A stage that cannot be measured
-  yet (for example, before analytics access is connected) is reported as exactly that — never estimated,
-  never blended into a made-up composite score.</p>
-
-  <h2>10. Monitor — protect what was won</h2>
-  <p>Daily checks watch for uptime problems, robots or noindex regressions, and facts approaching their
-  review date. Weekly benchmarks track answer drift. Monthly full audits catch what daily checks cannot.
-  Every run ends in an executive report: what changed, what was measured, what is blocked and by what,
-  and what happens next.</p>
-
-  <h2>The safety posture, in one paragraph</h2>
-  <p>Dry-run is the default everywhere — the system proposes and shows diffs unless production mode is
-  explicitly enabled. Applied changes require a backup and pass live verification or roll back on their own.
-  Budgets cap crawl rate, content volume and benchmarking spend per run. And the claim ledger means the
-  system cannot fabricate facts about your business even in fully automatic mode: if a fact is not verified,
-  it does not ship.</p>
-
-  <p><a class="btn" style="margin-top:14px" href="/#audit">Get a free AI-visibility audit</a></p>
+<header><span class="eyebrow">The working process</span><h1>How WebCrawlers works today</h1><p class="meta">A founder-led pilot for one small website</p></header>
+<p><strong>We use software to gather evidence, then a person reviews the findings and makes agreed changes.</strong> The pilot covers one live site, one language, and up to 30 selected pages. Adam handles setup and delivery with the site owner.</p>
+<h2>1. Scope and setup</h2>
+<p>We ask what the business offers, who the pages are for, and which URLs matter. We confirm that you control the site and can grant the access needed for approved repairs. We agree on a backup and release plan before changing anything. Setup has its own one-time fee in the quote.</p>
+<h2>2. Crawl and inspect</h2>
+<p>The crawler requests pages on your site, follows allowed links, and records responses, titles, headings, canonical URLs, and links. A browser-based page reader captures rendered pages where that adds useful evidence. Some pages can block access or require a login; the report notes those limits.</p>
+<h2>3. Review the findings</h2>
+<p>We check the output and prioritize specific problems. Research may add context about relevant questions and public sources, but we do not claim that an AI assistant will recommend your business. The report separates measured findings from suggestions and missing data.</p>
+<h2>4. Agree on repairs</h2>
+<p>The repair sprint includes up to three agreed technical fixes and one clarity change on an existing page. The exact changes depend on the site. You review the plan and authorize release; changes do not ship automatically.</p>
+<h2>5. Verify and follow up</h2>
+<p>We inspect affected live pages after release and send a before-and-after report with the changes and remaining issues. A follow-up on those agreed fixes is included after 30 days. It is not a daily or weekly monitoring subscription.</p>
+<h2>Where the software stands</h2>
+<p>The crawler, audits, browser capture, and customer job records work as an operator-run system. Public self-service onboarding, automatic publishing, continuous monitoring, and an always-on customer dashboard are still being developed. The pilot relies on a human operator.</p>
+<p>We quote setup and delivery separately before paid work begins. Search rankings, AI mentions, traffic, and sales cannot be guaranteed.</p>
+<p><a class="btn" href="/#audit">Discuss your website</a></p>
 </main>
-
-<footer>
-  <div class="wrap">
-    <span>© 2026 WebCrawlers · webcrawlers.tech · AI visibility, done honestly.</span>
-    <span class="fl">
-      <a href="/what-is-geo">What is GEO?</a>
-      <a href="/how-it-works">How it works</a>
-      <a href="/faq">FAQ</a>
-      <a href="/#audit">Contact</a>
-    </span>
-  </div>
-</footer>
-
+<footer><div class="wrap"><span>© 2026 WebCrawlers · webcrawlers.tech</span><span class="fl"><a href="/">Home</a><a href="/faq">FAQ</a><a href="mailto:hello@webcrawlers.tech">hello@webcrawlers.tech</a></span></div></footer>
 </body>
 </html>

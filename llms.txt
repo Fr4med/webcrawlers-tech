@@ -1,18 +1,17 @@
 # WebCrawlers
 
-> WebCrawlers gets businesses seen in AI answers. It checks how AI systems
-> (ChatGPT, Gemini, Perplexity and their crawlers) read a website, fixes what
-> blocks them through a safety-gated pipeline with backups and one-click undo,
-> tests the real questions buyers ask AI, and reports visibility as a
-> five-stage measured funnel. Unmeasurable metrics are reported as
-> unmeasurable, never estimated.
+> WebCrawlers offers a supervised search visibility repair pilot for one small
+> business website. Adam works with the owner to inspect up to 30 pages in one
+> language, agree on a few changes, approve release, and review the affected
+> live pages. Setup and the repair sprint are quoted separately. Rankings,
+> AI mentions, traffic, and sales are not guaranteed.
 
 Contact: hello@webcrawlers.tech
 
 ## Pages
 
-- [Home](https://webcrawlers.tech/): the problem ("can't be seen on ChatGPT"), what WebCrawlers does about it, and pricing (also in [Hebrew](https://webcrawlers.tech/he/), [German](https://webcrawlers.tech/de/), [French](https://webcrawlers.tech/fr/), [Polish](https://webcrawlers.tech/pl/), [Swedish](https://webcrawlers.tech/sv/))
-- [What is GEO?](https://webcrawlers.tech/what-is-geo): definition, GEO vs SEO, and the measurable inputs that influence AI citations
-- [How it works](https://webcrawlers.tech/how-it-works): the ten-stage pipeline mechanism, safety gates, and funnel measurement
-- [AI visibility audit pricing](https://webcrawlers.tech/ai-visibility-audit-pricing): real 2026 market prices with sources, what an audit must include, red flags
-- [FAQ](https://webcrawlers.tech/faq): honest answers, including what nobody can promise about AI search
+- [Home](https://webcrawlers.tech/): pilot scope, quote approach, and contact form (also in [Hebrew](https://webcrawlers.tech/he/), [German](https://webcrawlers.tech/de/), [French](https://webcrawlers.tech/fr/), [Polish](https://webcrawlers.tech/pl/), [Swedish](https://webcrawlers.tech/sv/))
+- [What is GEO?](https://webcrawlers.tech/what-is-geo): definition, GEO vs SEO, and practical website checks
+- [How it works](https://webcrawlers.tech/how-it-works): the supervised pilot process and current software status
+- [Pilot pricing](https://webcrawlers.tech/ai-visibility-audit-pricing): separate setup and delivery quotes
+- [FAQ](https://webcrawlers.tech/faq): pilot scope, approvals, pricing, and measurement limits
