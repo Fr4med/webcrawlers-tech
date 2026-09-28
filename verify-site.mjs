@@ -1,7 +1,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const files = ['index.html', 'how-it-works.html', 'faq.html', 'what-is-geo.html', 'ai-visibility-audit-pricing.html', '404.html', ...['he', 'de', 'fr', 'pl', 'sv'].map((lang) => `${lang}/index.html`)];
+const files = ['index.html', 'start.html', 'example.html', 'privacy.html', 'service.html', 'how-it-works.html', 'faq.html', 'what-is-geo.html', 'ai-visibility-audit-pricing.html', '404.html', ...['he', 'de', 'fr', 'pl', 'sv'].map((lang) => `${lang}/index.html`)];
 let failures = 0;
 const fail = (file, message) => { console.error(`${file}: ${message}`); failures++; };
 

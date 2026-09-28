@@ -8,7 +8,18 @@
 
 Contact: hello@webcrawlers.tech
 
+The current public offer is an assisted pilot. A fictional interactive demo is
+available at https://webcrawlers-swarm.adamkrestol.workers.dev/. It does not
+connect to customer accounts or publish to external services. Real content
+work is scoped separately. Public customer sign-in and subscriptions are not
+available in this offer.
+
 ## Pages
+
+- [Project inquiry](https://webcrawlers.tech/start): business, website, goals and contact details
+- [Example deliverable](https://webcrawlers.tech/example): a labeled fictional finding and proposed repair
+- [Privacy](https://webcrawlers.tech/privacy): inquiry information and contact for data requests
+- [Service details](https://webcrawlers.tech/service): scope, quotes, access and publication
 
 - [Home](https://webcrawlers.tech/): pilot scope, quote approach, and contact form (also in [Hebrew](https://webcrawlers.tech/he/), [German](https://webcrawlers.tech/de/), [French](https://webcrawlers.tech/fr/), [Polish](https://webcrawlers.tech/pl/), [Swedish](https://webcrawlers.tech/sv/))
 - [What is GEO?](https://webcrawlers.tech/what-is-geo): definition, GEO vs SEO, and practical website checks
