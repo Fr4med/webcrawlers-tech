@@ -8,11 +8,7 @@
 
 Contact: hello@webcrawlers.tech
 
-The current public offer is an assisted pilot. A fictional interactive demo is
-available at https://webcrawlers-swarm.adamkrestol.workers.dev/. It does not
-connect to customer accounts or publish to external services. Real content
-work is scoped separately. Public customer sign-in and subscriptions are not
-available in this offer.
+The current public offer is an Adam-led audit and repair pilot. Content work is scoped separately. Public customer sign-in and subscriptions are not available in this offer.
 
 ## Pages
 
@@ -26,3 +22,5 @@ available in this offer.
 - [How it works](https://webcrawlers.tech/how-it-works): the supervised pilot process and current software status
 - [Pilot pricing](https://webcrawlers.tech/ai-visibility-audit-pricing): separate setup and delivery quotes
 - [FAQ](https://webcrawlers.tech/faq): pilot scope, approvals, pricing, and measurement limits
+
+- [AI visibility audit](https://webcrawlers.tech/ai-visibility-audit): scope, checks, measurement and how to start

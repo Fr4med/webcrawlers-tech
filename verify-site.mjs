@@ -1,12 +1,13 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const files = ['index.html', 'start.html', 'example.html', 'privacy.html', 'service.html', 'how-it-works.html', 'faq.html', 'what-is-geo.html', 'ai-visibility-audit-pricing.html', '404.html', ...['he', 'de', 'fr', 'pl', 'sv'].map((lang) => `${lang}/index.html`)];
+const files = ['index.html', 'ai-visibility-audit.html', 'start.html', 'example.html', 'privacy.html', 'service.html', 'how-it-works.html', 'faq.html', 'what-is-geo.html', 'ai-visibility-audit-pricing.html', '404.html', ...['he', 'de', 'fr', 'pl', 'sv'].map((lang) => `${lang}/index.html`)];
 let failures = 0;
 const fail = (file, message) => { console.error(`${file}: ${message}`); failures++; };
 
 for (const file of files) {
   const html = readFileSync(new URL(`./${file}`, import.meta.url), 'utf8');
+  if (/webcrawlers-swarm|interactive demo|public demo/i.test(html)) fail(file, 'private operator or demo promotion in public page');
   if (!html.includes('<!doctype html>') || !html.includes('</html>')) fail(file, 'incomplete HTML document');
   if (!/<html lang="[a-z]+"/.test(html)) fail(file, 'missing document language');
   if (!/<meta name="viewport"/.test(html)) fail(file, 'missing viewport');
