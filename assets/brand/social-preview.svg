@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#f5f3ed"/>
+  <path d="M68 62 84 53l16 9v18l-16 9-16-9V62Z" stroke="#246b58" stroke-width="2"/>
+  <path d="m68 62 16 9 16-9m-16 9v18m-9-31v18l16 9" stroke="#246b58" stroke-width="2"/>
+  <text x="116" y="81" fill="#20372f" font-family="Arial, sans-serif" font-size="32" font-weight="600" letter-spacing="-1">webcrawlers<tspan fill="#246b58">.</tspan></text>
+  <text x="68" y="207" fill="#246b58" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2">AI VISIBILITY AUDITS</text>
+  <text x="64" y="287" fill="#20372f" font-family="Arial, sans-serif" font-size="63" font-weight="500" letter-spacing="-3">Clear findings.</text>
+  <text x="64" y="363" fill="#246b58" font-family="Arial, sans-serif" font-size="63" font-weight="500" letter-spacing="-3">A repair plan.</text>
+  <text x="68" y="429" fill="#617068" font-family="Arial, sans-serif" font-size="21">Website audits and agreed repairs.</text>
+  <text x="68" y="554" fill="#246b58" font-family="Arial, sans-serif" font-size="18">webcrawlers.tech</text>
+  <rect x="621" y="52" width="527" height="526" rx="32" fill="#203f34"/>
+  <path d="M644 429c96 0 62-254 172-254h45c110 0 57 255 196 255h65" stroke="#64856a" stroke-width="1.5"/>
+  <path d="M644 449c108 0 81-254 172-254h45c92 0 80 255 196 255h65" stroke="#64856a" stroke-width="1.5" opacity=".5"/>
+  <g transform="rotate(-8 805 289)">
+    <rect x="695" y="137" width="204" height="257" rx="18" fill="#e6ecd9"/>
+    <rect x="715" y="160" width="164" height="54" rx="7" fill="#c4d5b9"/>
+    <path d="M720 240h136m-136 20h92m-92 20h143m-143 20h112m-112 20h139" stroke="#90a78b" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g transform="rotate(6 1007 366)">
+    <rect x="913" y="246" width="178" height="223" rx="18" fill="#eef2e6"/>
+    <path d="M936 276h121m-121 18h73" stroke="#98b08f" stroke-width="5" stroke-linecap="round"/>
+    <rect x="933" y="321" width="138" height="74" rx="10" fill="#d8e4ca"/>
+    <path d="m970 344-14 14 14 14m44-28 14 14-14 14m-19-35-8 42" stroke="#4a7058" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M937 419h90" stroke="#98b08f" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <rect x="794" y="285" width="205" height="138" rx="18" fill="#fffefa"/>
+  <path d="M816 312h151m-151 19h85" stroke="#9bb194" stroke-width="5" stroke-linecap="round"/>
+  <path d="M816 352h160" stroke="#dae2d3"/>
+  <circle cx="821" cy="377" r="5" fill="#a3b791"/>
+  <path d="M839 377h123" stroke="#9bb194" stroke-width="5" stroke-linecap="round"/>
+  <rect x="1031" y="150" width="72" height="72" rx="23" fill="#d5e4b2"/>
+  <path d="m1050 185 12 12 21-24" stroke="#203f34" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="674" y="389" width="72" height="72" rx="23" fill="#d5e4b2"/>
+  <circle cx="705" cy="419" r="14" stroke="#203f34" stroke-width="3"/>
+  <path d="m715 429 13 13" stroke="#203f34" stroke-width="3" stroke-linecap="round"/>
+  <text x="652" y="552" fill="#d6e5d3" font-family="Arial, sans-serif" font-size="13" letter-spacing="1">PROCESS ILLUSTRATION</text>
+</svg>

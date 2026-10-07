@@ -26,3 +26,45 @@
 .about-founder > p:not(.about-role) { margin-bottom: 0; }
 .about-hero + .surface .feature { padding: 28px; }
 @media (max-width: 900px) { .about-hero { gap: 28px; padding-block: 48px; } }
+
+/* Editorial founder treatment with original AI-assisted work illustration. */
+.about-hero { grid-template-columns: 1.05fr 1fr; gap: 72px; padding-block: 72px 80px; }
+.about-copy h1 { font-size: clamp(44px, 4.9vw, 70px); line-height: 1.06; letter-spacing: -.055em; margin: 18px 0 26px; }
+.about-copy .intro { font-size: 18px; line-height: 1.65; max-width: 39ch; }
+.about-detail { font-size: 15px; max-width: 43ch; margin-block: 20px 28px; }
+.about-founder { border-radius: 24px; padding: 0; background: var(--surface); overflow: hidden; border-color: #d5dfce; box-shadow: none; }
+.founder-art { margin: 0; background: #203f34; }
+.founder-art img { display: block; width: 100%; height: auto; }
+.founder-art figcaption { font-size: 11px; color: #d6e5d3; padding: 0 28px 20px; }
+.founder-details { display: flex; align-items: center; gap: 18px; padding: 28px 28px 0; }
+.about-initials { width: 56px; height: 56px; border-radius: 16px; margin: 0; font-size: 23px; flex: none; background: #eef2e5; border-color: #d5dfcc; }
+.founder-details .eyebrow { font-size: 10px; margin-bottom: 6px; }
+.about-founder h2 { font-size: 28px; letter-spacing: -.035em; }
+.about-founder .about-role { font-size: 13px; margin-bottom: 0; }
+.about-founder > p.founder-note { font-size: 14px; color: var(--muted); padding: 20px 28px 28px; margin: 0; }
+.about-hero + .surface { background: #e9eee3; border: 0; }
+.about-hero + .surface .feature { padding: 30px; }
+.about-hero + .surface .feature-number { font-size: 11px; }
+.about-hero + .surface .feature svg { width: 48px; height: 48px; padding: 8px; margin-block: 24px 20px; border-radius: 14px; background: #eef2e5; }
+.about-hero + .surface .feature h3 { font-size: 23px; }
+.brand-about .closing { margin-block: 48px; padding: 56px 28px; border-radius: 24px; background: #e9eee3; }
+.brand-about .closing h2 { font-size: clamp(34px, 3.4vw, 46px); letter-spacing: -.045em; }
+.brand-about .closing .email-link { font-size: 14px; margin-top: 20px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+@media (max-width: 960px) {
+  .about-hero { grid-template-columns: 1fr; gap: 36px; padding-block: 52px; }
+  .about-founder { max-width: 680px; }
+  .about-copy .intro, .about-detail { max-width: 58ch; }
+}
+@media (max-width: 620px) {
+  .about-hero { padding-block: 42px 48px; gap: 28px; }
+  .about-copy h1 { font-size: clamp(38px, 10.2vw, 49px); }
+  .about-copy .intro { font-size: 17px; }
+  .about-detail { font-size: 15px; }
+  .about-copy .button { width: auto; min-width: 180px; }
+  .founder-details { padding: 24px 24px 0; gap: 14px; }
+  .about-founder h2 { font-size: 25px; }
+  .about-founder > .founder-note { padding: 18px 24px 24px; }
+  .founder-art figcaption { padding-inline: 24px; }
+  .about-hero + .surface .feature { padding: 26px; }
+  .brand-about .closing { margin-block: 32px; padding-block: 40px; }
+}

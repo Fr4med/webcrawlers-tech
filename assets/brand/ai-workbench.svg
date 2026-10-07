@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" fill="none">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0v40" stroke="#b6d0b8" stroke-opacity=".12"/></pattern>
+    <filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="15" stdDeviation="12" flood-color="#102f25" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="680" height="400" rx="28" fill="#203f34"/>
+  <rect x="24" y="24" width="632" height="352" rx="16" fill="url(#grid)"/>
+  <path d="M78 205h148m232 0h146M340 70v56m0 170v47" stroke="#86a682" stroke-width="1.5" stroke-dasharray="4 7"/>
+  <g filter="url(#shadow)" transform="rotate(-7 206 177)">
+    <rect x="103" y="92" width="176" height="192" rx="17" fill="#e6ecd9"/>
+    <path d="M130 123h99m-99 20h71" stroke="#9fb694" stroke-width="5" stroke-linecap="round"/>
+    <path d="m142 184-15 15 15 15m70-30 15 15-15 15m-26-39-10 48" stroke="#4a7058" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M130 246h79" stroke="#9fb694" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#shadow)" transform="rotate(7 492 217)">
+    <rect x="410" y="129" width="172" height="194" rx="17" fill="#e6ecd9"/>
+    <rect x="433" y="153" width="126" height="57" rx="7" fill="#c4d5b9"/>
+    <path d="M434 233h103m-103 19h81m-81 19h116m-116 19h60" stroke="#9fb694" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="254" y="115" width="172" height="172" rx="36" fill="#fffefa"/>
+    <rect x="279" y="140" width="122" height="122" rx="26" fill="#edf2e5"/>
+    <path d="M313 169 340 154l27 15v31l-27 15-27-15v-31Z" stroke="#246b58" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="m313 169 27 15 27-15m-27 15v31m-15-54v30l27 15" stroke="#246b58" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M308 239h64" stroke="#b3c7a7" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <rect x="486" y="65" width="54" height="54" rx="17" fill="#d5e4b2"/>
+  <path d="m500 91 9 9 16-19" stroke="#203f34" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="120" cy="332" r="5" fill="#d5e4b2"/>
+  <path d="M609 322h22m-11-11v22" stroke="#d5e4b2" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
