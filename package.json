@@ -1,0 +1,10 @@
+{
+  "name": "site-webcrawlers-tech",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build-refined.mjs",
+    "verify": "node verify-site.mjs",
+    "test": "bun test tests"
+  }
+}

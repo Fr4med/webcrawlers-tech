@@ -1,4 +1,6 @@
-import { writeFileSync, readFileSync } from 'node:fs';
+import { writeFileSync, readFileSync, readdirSync } from 'node:fs';
+// Current source lives under src/pages. The historical generator must be explicit.
+if (!process.argv.includes('--legacy-generate')) { await import('./build-refined.mjs'); process.exit(0); }
 const root = new URL('./', import.meta.url);
 const exampleOnly = process.argv.includes('--example-only');
 const icon = '<svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 10 16 4l11 6v12l-11 6-11-6V10Z" stroke="currentColor" stroke-width="1.5"/><path d="m5 10 11 6 11-6M16 16v12M10 7v12l11 6" stroke="currentColor" stroke-width="1.5"/></svg>';
@@ -54,3 +56,11 @@ page('ai-visibility-audit','AI visibility audit for small business websites','Ma
 <h2>What the platforms say</h2><p><a href="https://developers.openai.com/api/docs/bots">OpenAI documents OAI-SearchBot</a> for search and treats its training crawler separately. <a href="https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler">Anthropic documents Claude-SearchBot</a> for search. <a href="https://developers.google.com/search/docs/fundamentals/ai-optimization-guide">Google recommends useful original content and normal search fundamentals</a>. None of these establishes a guaranteed place in an AI answer.</p>
 <h2>What we do not promise</h2><p>We do not guarantee rankings, AI recommendations, traffic or sales. Adding a metadata tag or an AI text file does not prove improved visibility. The agreed website changes and their checks are the deliverable; mentions and enquiries are measured separately.</p>
 <h2>Start with your website</h2><p>Share your URL, audience and the questions you want potential customers to ask. Adam will assess fit and propose a focused scope.</p><a class="button" href="/start">Discuss an AI visibility audit →</a><p class="muted">Reviewed 29 September 2026 · Adam Krestol, WebCrawlers</p></article>`);
+
+for (const name of readdirSync(root).filter(name => name.endsWith('.html') && (!exampleOnly || name === 'example.html'))) {
+  const file = new URL(name, root);
+  let html = readFileSync(file, 'utf8');
+  if (!html.includes('href="/assets/refined.css"')) html = html.replace('</head>', '<link rel="stylesheet" href="/assets/refined.css"></head>');
+  html = html.replace(/<meta name="theme-color" content="[^"]*">/g, '<meta name="theme-color" content="#f5f3ed">');
+  writeFileSync(file, html);
+}

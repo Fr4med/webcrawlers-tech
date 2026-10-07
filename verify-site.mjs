@@ -1,7 +1,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const files = ['index.html', 'ai-visibility-audit.html', 'start.html', 'example.html', 'privacy.html', 'service.html', 'how-it-works.html', 'faq.html', 'what-is-geo.html', 'ai-visibility-audit-pricing.html', '404.html', ...['he', 'de', 'fr', 'pl', 'sv'].map((lang) => `${lang}/index.html`)];
+const files = ['index.html', 'about.html', 'ai-visibility-audit.html', 'start.html', 'example.html', 'privacy.html', 'cookies.html', 'service.html', 'how-it-works.html', 'faq.html', 'what-is-geo.html', 'ai-visibility-audit-pricing.html', '404.html', ...['he', 'de', 'fr', 'pl', 'sv'].map((lang) => `${lang}/index.html`),...['signup','signin','terms','forgot-password','reset-password','verify-email'].map(route=>route+'.html').filter(file=>existsSync(resolve(import.meta.dirname,file)))];
 let failures = 0;
 const fail = (file, message) => { console.error(`${file}: ${message}`); failures++; };
 
@@ -11,6 +11,24 @@ for (const file of files) {
   if (!html.includes('<!doctype html>') || !html.includes('</html>')) fail(file, 'incomplete HTML document');
   if (!/<html lang="[a-z]+"/.test(html)) fail(file, 'missing document language');
   if (!/<meta name="viewport"/.test(html)) fail(file, 'missing viewport');
+  if (!html.includes('href="/assets/refined.css"')) fail(file, 'missing shared customer theme');
+  if (!html.includes('src="/assets/cookie-preferences.js"') || !html.includes('href="/assets/cookie-preferences.css"')) fail(file, 'missing privacy preference controls');
+  if (!/<footer\b[\s\S]*?href="\/cookies"[^>]*data-cookie-settings/.test(html)) fail(file, 'missing footer cookie settings link');
+  const preferencesAt = html.indexOf('src="/assets/cookie-preferences.js"');
+  const inquiryAt = html.search(/src="\/assets\/(?:launch|inquiry)\.js"/);
+  if (inquiryAt >= 0 && preferencesAt > inquiryAt) fail(file, 'privacy preferences must load before enquiry scripts');
+  if (file.includes('/index.html')) {
+    if (!/<input[^>]*id="lead-consent"[^>]*required/.test(html)) fail(file, 'missing required contact consent');
+    if (!html.includes('href="/privacy"') || !html.includes('href="/service"')) fail(file, 'missing policy links');
+    if (!html.includes('id="lead-reference"') || !html.includes('data-retry=')) fail(file, 'missing reference or retry explanation');
+    if (!html.includes('src="/assets/inquiry.js"')) fail(file, 'missing shared inquiry delivery handler');
+  }
+  for (const [, src] of html.matchAll(/<script[^>]*\bsrc="([^"]+)"/g)) {
+    if (!src.startsWith('/')) continue;
+    const scriptPath = resolve(import.meta.dirname, src.slice(1));
+    if (!existsSync(scriptPath)) fail(file, `missing script ${src}`);
+    else { try { new Function(readFileSync(scriptPath, 'utf8')); } catch (error) { fail(file, `invalid ${src}: ${error.message}`); } }
+  }
   for (const [, href] of html.matchAll(/\bhref="([^"]+)"/g)) {
     if (!href.startsWith('/')) continue;
     const [path, anchor] = href.split('#');

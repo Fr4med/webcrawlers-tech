@@ -1,8 +1,8 @@
 import { writeFileSync } from 'node:fs';
+if (!process.argv.includes('--legacy-generate')) { await import('./build-refined.mjs'); process.exit(0); }
 
 const copy = {
   de: {
-    consent: "Ich stimme der Kontaktaufnahme zu dieser Anfrage zu.",
     title: 'WebCrawlers — Pilotprojekt zur Verbesserung Ihrer Website',
     description: 'Ein betreutes Pilotprojekt für kleine Websites: bis zu 30 Seiten prüfen, Änderungen vereinbaren und Ergebnisse vor und nach der Umsetzung ansehen.',
     navHow: 'So funktioniert es', navPricing: 'Preise', navFaq: 'FAQ', navContact: 'Pilotprojekt besprechen',
@@ -15,7 +15,6 @@ const copy = {
     name: 'Name oder Firma *', email: 'E-Mail *', note: 'Website und Ihr Anliegen', send: 'Pilotprojekt besprechen', sending: 'Wird gesendet…', sent: 'Vielen Dank. Wir antworten per E-Mail.', error: 'Senden fehlgeschlagen. Schreiben Sie bitte an hello@webcrawlers.tech.', invalid: 'Bitte geben Sie Ihren Namen und eine gültige E-Mail-Adresse ein.', prefer: 'Lieber per E-Mail?'
   },
   fr: {
-    consent: "J’accepte d’être contacté au sujet de cette demande.",
     title: 'WebCrawlers — Projet pilote pour améliorer votre site',
     description: 'Un projet pilote accompagné pour les petits sites : examiner jusqu’à 30 pages, convenir des corrections et vérifier le résultat.',
     navHow: 'Fonctionnement', navPricing: 'Tarifs', navFaq: 'FAQ', navContact: 'Discuter du pilote',
@@ -28,7 +27,6 @@ const copy = {
     name: 'Nom ou entreprise *', email: 'E-mail *', note: 'Votre site et votre demande', send: 'Discuter du pilote', sending: 'Envoi…', sent: 'Merci. Nous vous répondrons par e-mail.', error: 'Envoi impossible. Écrivez à hello@webcrawlers.tech.', invalid: 'Indiquez votre nom et une adresse e-mail valide.', prefer: 'Vous préférez un e-mail ?'
   },
   pl: {
-    consent: "Zgadzam się na kontakt w sprawie tego zapytania.",
     title: 'WebCrawlers — Pilotaż usprawnienia witryny',
     description: 'Pilotaż dla małych witryn: analiza do 30 stron, uzgodnione poprawki i sprawdzenie efektu.',
     navHow: 'Jak to działa', navPricing: 'Ceny', navFaq: 'FAQ', navContact: 'Porozmawiajmy o pilotażu',
@@ -41,7 +39,6 @@ const copy = {
     name: 'Imię lub firma *', email: 'E-mail *', note: 'Witryna i Twój cel', send: 'Porozmawiajmy o pilotażu', sending: 'Wysyłanie…', sent: 'Dziękujemy. Odpowiemy e-mailem.', error: 'Nie udało się wysłać. Napisz na hello@webcrawlers.tech.', invalid: 'Podaj imię i poprawny adres e-mail.', prefer: 'Wolisz e-mail?'
   },
   sv: {
-    consent: "Jag samtycker till att bli kontaktad om denna förfrågan.",
     title: 'WebCrawlers — Pilotprojekt för en bättre webbplats',
     description: 'Ett personligt pilotprojekt för små webbplatser: granska upp till 30 sidor, kom överens om ändringar och kontrollera resultatet.',
     navHow: 'Så fungerar det', navPricing: 'Pris', navFaq: 'FAQ', navContact: 'Prata om ett pilotprojekt',
@@ -54,7 +51,6 @@ const copy = {
     name: 'Namn eller företag *', email: 'E-post *', note: 'Webbplats och önskemål', send: 'Prata om ett pilotprojekt', sending: 'Skickar…', sent: 'Tack. Vi svarar via e-post.', error: 'Det gick inte att skicka. Skriv till hello@webcrawlers.tech.', invalid: 'Ange namn och en giltig e-postadress.', prefer: 'Föredrar du e-post?'
   },
   he: {
-    consent: "אני מסכים לקבל פנייה בקשר לבקשה זו.",
     title: 'WebCrawlers — פיילוט לשיפור האתר',
     description: 'פיילוט מלווה לעסקים קטנים: בדיקה של עד 30 עמודים, תיקונים מוסכמים ובדיקת התוצאה באתר הפעיל.',
     navHow: 'איך זה עובד', navPricing: 'תמחור', navFaq: 'שאלות נפוצות', navContact: 'לדבר על הפיילוט',
@@ -68,10 +64,18 @@ const copy = {
   }
 };
 
+const formCopy = {
+  de: {consent: 'WebCrawlers darf mich zu dieser Anfrage kontaktieren und meine Angaben wie im Datenschutzhinweis beschrieben verarbeiten.', privacy: 'Datenschutz auf Englisch', service: 'Leistungsumfang auf Englisch', reference: 'Ihre Referenz', received: 'Ihre Anfrage wurde angenommen. Bitte bewahren Sie die Referenz auf.', retry: 'Der Eingang konnte nicht bestätigt werden. Ihre Angaben bleiben erhalten. Versuchen Sie es mit derselben Referenz erneut oder schreiben Sie an hello@webcrawlers.tech.'},
+  fr: {consent: 'J’accepte que WebCrawlers me contacte au sujet de cette demande et traite mes informations selon la politique de confidentialité.', privacy: 'Confidentialité en anglais', service: 'Conditions du service en anglais', reference: 'Votre référence', received: 'Votre demande a été acceptée. Conservez cette référence.', retry: 'La réception n’a pas pu être confirmée. Vos informations sont conservées ici. Réessayez avec la même référence ou écrivez à hello@webcrawlers.tech.'},
+  pl: {consent: 'Zgadzam się na kontakt WebCrawlers w sprawie tego zapytania i przetwarzanie podanych informacji zgodnie z polityką prywatności.', privacy: 'Prywatność po angielsku', service: 'Zakres usługi po angielsku', reference: 'Numer zapytania', received: 'Zapytanie zostało przyjęte. Zachowaj jego numer.', retry: 'Nie udało się potwierdzić przyjęcia. Dane pozostają w formularzu. Spróbuj ponownie z tym samym numerem lub napisz na hello@webcrawlers.tech.'},
+  sv: {consent: 'Jag godkänner att WebCrawlers kontaktar mig om denna förfrågan och behandlar mina uppgifter enligt integritetspolicyn.', privacy: 'Integritet på engelska', service: 'Tjänstens omfattning på engelska', reference: 'Din referens', received: 'Din förfrågan har tagits emot. Spara referensen.', retry: 'Mottagandet kunde inte bekräftas. Dina uppgifter finns kvar. Försök igen med samma referens eller skriv till hello@webcrawlers.tech.'},
+  he: {consent: 'אני מסכים ש-WebCrawlers ייצרו איתי קשר לגבי הפנייה ויעבדו את הפרטים שמסרתי בהתאם למדיניות הפרטיות.', privacy: 'מדיניות פרטיות באנגלית', service: 'פרטי השירות באנגלית', reference: 'מספר הפנייה', received: 'הפנייה התקבלה. שמרו את מספר הפנייה.', retry: 'לא ניתן לאשר שהפנייה התקבלה. הפרטים נשמרו בטופס. נסו שוב עם אותו מספר פנייה או כתבו ל-hello@webcrawlers.tech.'},
+};
 const languages = [['en', '/', 'EN'], ['he', '/he/', 'עב'], ['de', '/de/', 'DE'], ['fr', '/fr/', 'FR'], ['pl', '/pl/', 'PL'], ['sv', '/sv/', 'SV']];
 const escape = (s) => s.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
 
 for (const [lang, t] of Object.entries(copy)) {
+  const f = formCopy[lang];
   const navLangs = languages.map(([code, href, label]) => `<a href="${href}" lang="${code}"${code === lang ? ' aria-current="page"' : ''}>${label}</a>`).join('');
   const html = `<!doctype html>
 <html lang="${lang}"${lang === 'he' ? ' dir="rtl"' : ''}>
@@ -85,6 +89,9 @@ ${languages.map(([code, href]) => `<link rel="alternate" hreflang="${code}" href
 <link rel="alternate" hreflang="x-default" href="https://webcrawlers.tech/">
 <link rel="icon" type="image/png" href="/assets/logo.png">
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/refined.css">
+<meta name="theme-color" content="#f5f3ed">
+<script src="/assets/inquiry.js" defer></script>
 <meta property="og:type" content="website"><meta property="og:url" content="https://webcrawlers.tech/${lang}/"><meta property="og:title" content="${escape(t.title)}"><meta property="og:description" content="${escape(t.description)}"><meta property="og:image" content="https://webcrawlers.tech/assets/hero.png">
 </head>
 <body>
@@ -92,27 +99,8 @@ ${languages.map(([code, href]) => `<link rel="alternate" hreflang="${code}" href
 <header class="hero"><div class="wrap"><span class="eyebrow">${t.eyebrow}</span><h1>${t.headline} <em>${t.emphasis}</em></h1><p class="sub">${t.intro}</p><div class="cta-row"><a class="btn" href="#audit">${t.navContact}</a><a class="btn ghost" href="/how-it-works">${t.navHow}</a></div><p class="trust">${t.limit}</p></div></header>
 <section><div class="wrap"><h2>${t.scopeTitle}</h2><div class="grid">${t.scope.map((item) => `<div class="card"><p>${item}</p></div>`).join('')}</div></div></section>
 <section class="alt" id="pricing"><div class="wrap"><h2>${t.pricingTitle}</h2><p class="lede">${t.pricing}</p><a class="btn" href="#audit">${t.navContact}</a></div></section>
-<section id="audit"><div class="wrap contact-layout"><div><h2>${t.contactTitle}</h2><p class="lede">${t.contact}</p></div><form class="contact-panel" id="lead-form" novalidate><label for="lead-name">${t.name}</label><input id="lead-name" name="name" required maxlength="120"><label for="lead-email">${t.email}</label><input id="lead-email" name="email" type="email" required maxlength="200"><label for="lead-note">${t.note}</label><textarea id="lead-note" name="note" maxlength="1000"></textarea><input class="hp" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true"><label for="lead-consent" style="display:flex;align-items:flex-start;gap:10px"><input id="lead-consent" name="consent" type="checkbox" required style="width:auto;padding:0;flex-shrink:0"><span>${t.consent} <a href="/privacy">Privacy</a></span></label><div style="margin-top:20px"><button class="btn" type="submit">${t.send}</button></div><p id="lead-msg" role="status"></p><p>${t.prefer} <a href="mailto:hello@webcrawlers.tech">hello@webcrawlers.tech</a></p></form></div></section>
+<section id="audit"><div class="wrap contact-layout"><div><h2>${t.contactTitle}</h2><p class="lede">${t.contact}</p></div><form class="contact-panel" id="lead-form" data-invalid="${escape(t.invalid)}" data-sending="${escape(t.sending)}" data-received="${escape(f.received)}" data-retry="${escape(f.retry)}" data-reference="${escape(f.reference)}"><label for="lead-name">${t.name}</label><input id="lead-name" name="name" autocomplete="name" required maxlength="120"><label for="lead-email">${t.email}</label><input id="lead-email" name="email" type="email" autocomplete="email" required maxlength="200"><label for="lead-note">${t.note}</label><textarea id="lead-note" name="note" maxlength="1000"></textarea><input class="hp" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="inquiry-consent" for="lead-consent"><input id="lead-consent" type="checkbox" name="consent" required><span>${f.consent} <a href="/privacy" lang="en">${f.privacy}</a> · <a href="/service" lang="en">${f.service}</a></span></label><div style="margin-top:20px"><button class="btn" type="submit">${t.send}</button></div><p id="lead-msg" role="status" aria-live="polite"></p><p id="lead-reference" class="inquiry-reference" dir="ltr"></p><p>${t.prefer} <a href="mailto:hello@webcrawlers.tech">hello@webcrawlers.tech</a></p></form></div></section>
 <footer><div class="wrap"><span>© 2026 WebCrawlers · webcrawlers.tech</span><span class="fl"><a href="/">EN</a><a href="/how-it-works">${t.navHow}</a><a href="/faq">${t.navFaq}</a><a href="mailto:hello@webcrawlers.tech">hello@webcrawlers.tech</a></span></div></footer>
-<script>
-const form = document.getElementById('lead-form'); const msg = document.getElementById('lead-msg');
-let busy = false, requestId = crypto.randomUUID(), requestPayload = null;
-form.addEventListener('submit', async (event) => {
-  event.preventDefault(); if (busy) return;
-  if (!form.reportValidity() || !String(form.elements.name.value).trim()) { msg.className = 'err'; msg.textContent = ${JSON.stringify(t.invalid)}; return; }
-  const data = Object.fromEntries(new FormData(form).entries()); data.lang = document.documentElement.lang; data.consent = document.getElementById('lead-consent').checked === true;
-  const current = JSON.stringify(data); if (requestPayload && current !== requestPayload) requestId = crypto.randomUUID(); requestPayload = current;
-  data.request_id = requestId; busy = true; const button = form.querySelector('button[type="submit"]'); button.disabled = true;
-  msg.className = ''; msg.textContent = ${JSON.stringify(t.sending)};
-  try {
-    const response = await fetch('https://intake.webcrawlers.tech/lead', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data), signal: AbortSignal.timeout(15000) });
-    const out = await response.json().catch(() => ({}));
-    if (response.ok && out.ok === true && out.reference === requestId) { msg.className = 'ok'; msg.textContent = ${JSON.stringify(t.sent)} + ' Reference: ' + requestId; form.reset(); requestId = crypto.randomUUID(); requestPayload = null; }
-    else { msg.className = 'err'; msg.textContent = ${JSON.stringify(t.error)}; }
-  } catch { msg.className = 'err'; msg.textContent = ${JSON.stringify(t.error)}; }
-  finally { busy = false; button.disabled = false; }
-});
-</script>
 </body>
 </html>
 `;

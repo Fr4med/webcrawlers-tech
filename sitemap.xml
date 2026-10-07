@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://webcrawlers.tech/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-06</lastmod>
   </url>
   <url>
     <loc>https://webcrawlers.tech/he/</loc>
@@ -34,15 +34,20 @@
   </url>
   <url>
     <loc>https://webcrawlers.tech/ai-visibility-audit-pricing</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-06</lastmod>
   </url>
   <url>
     <loc>https://webcrawlers.tech/faq</loc>
     <lastmod>2026-09-29</lastmod>
   </url>
-  <url><loc>https://webcrawlers.tech/start</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://webcrawlers.tech/example</loc><lastmod>2026-09-30</lastmod></url>
-  <url><loc>https://webcrawlers.tech/privacy</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://webcrawlers.tech/service</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://webcrawlers.tech/ai-visibility-audit</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://webcrawlers.tech/start</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://webcrawlers.tech/example</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://webcrawlers.tech/privacy</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://webcrawlers.tech/service</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://webcrawlers.tech/ai-visibility-audit</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://webcrawlers.tech/about</loc><lastmod>2026-10-06</lastmod></url>
+  <url>
+    <loc>https://webcrawlers.tech/cookies</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
 </urlset>

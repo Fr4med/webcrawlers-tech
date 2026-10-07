@@ -1,0 +1,67 @@
+/* Shared with the private customer UI. Rules affect only privacy controls. */
+.wc-privacy-banner, .wc-privacy-dialog, .wc-privacy-notice {
+  box-sizing: border-box;
+  color: var(--text, #20372f);
+  background: var(--surface, #fffefa);
+  border: 1px solid var(--line, #dce3da);
+  border-radius: 14px;
+  font-family: var(--font, Inter, ui-sans-serif, system-ui, sans-serif);
+  text-align: start;
+  box-shadow: 0 16px 56px #20372f26;
+}
+.wc-privacy-banner[hidden], .wc-privacy-notice[hidden] { display: none; }
+.wc-privacy-banner {
+  position: fixed; z-index: 90; inset-inline: 16px; bottom: 16px;
+  width: auto; max-width: 1150px; max-height: calc(100svh - 32px);
+  margin-inline: auto; padding: 24px; overflow: auto;
+  display: flex; align-items: center; gap: 24px;
+}
+.wc-privacy-banner-copy { flex: 1; min-width: 0; }
+.wc-privacy-banner h2, .wc-privacy-dialog h2 { margin: 0 0 10px; font-size: 1.25rem; line-height: 1.3; letter-spacing: -.02em; }
+.wc-privacy-banner p, .wc-privacy-dialog p { margin: 0 0 12px; color: var(--muted, #617068); font-size: .92rem; line-height: 1.6; }
+.wc-privacy-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.wc-privacy-banner > .wc-privacy-actions { flex: 0 1 410px; }
+.wc-privacy-button {
+  box-sizing: border-box; appearance: none; font: inherit; font-size: .9rem; font-weight: 600;
+  min-height: 48px; padding: 11px 16px; border: 1px solid var(--accent, #246b58);
+  border-radius: 10px; cursor: pointer; color: var(--accent, #246b58); background: var(--surface, #fffefa);
+  text-align: center; line-height: 1.4; flex: 1 1 140px;
+}
+.wc-privacy-button:hover { background: var(--panel2, #eef2e9); }
+.wc-privacy-button:focus-visible, .wc-privacy-details:focus-visible, .wc-privacy-option input:focus-visible {
+  outline: 3px solid #155a97; outline-offset: 3px;
+}
+.wc-privacy-details { color: var(--accent, #246b58); text-decoration: underline; font-size: .9rem; }
+.wc-privacy-dialog { padding: 28px; width: min(580px, calc(100% - 32px)); max-height: calc(100svh - 48px); overflow: auto; }
+.wc-privacy-dialog::backdrop { background: #172a2380; }
+.wc-privacy-dialog > h2:focus { outline: none; }
+.wc-privacy-dialog > .wc-privacy-button { display: block; width: 100%; margin-top: 16px; border-color: var(--line, #dce3da); }
+.wc-privacy-dialog > .wc-privacy-details { display: inline-block; margin-top: 16px; }
+.wc-privacy-row { position: relative; border: 1px solid var(--line, #dce3da); border-radius: 10px; padding: 16px; margin: 16px 0; }
+.wc-privacy-row h3 { font-size: 1rem; margin: 0 0 8px; padding-inline-end: 95px; }
+.wc-privacy-row p { margin: 8px 0 0; }
+.wc-privacy-always { position: absolute; top: 16px; inset-inline-end: 16px; color: var(--accent, #246b58); font-size: .78rem; font-weight: 650; }
+.wc-privacy-option { display: flex; align-items: center; gap: 12px; font-weight: 600; cursor: pointer; }
+.wc-privacy-option input { width: 20px; height: 20px; min-width: 20px; margin: 0; accent-color: var(--accent, #246b58); }
+.wc-privacy-dialog p.wc-privacy-small { font-size: .82rem; }
+.wc-privacy-notice { position: fixed; z-index: 100; bottom: 16px; inset-inline: 16px; max-width: 580px; margin: 0 auto; padding: 16px; font-size: .9rem; }
+@media (max-width: 700px) {
+  .wc-privacy-banner { flex-direction: column; align-items: stretch; gap: 16px; padding: 20px; }
+  .wc-privacy-banner > .wc-privacy-actions { flex-basis: auto; }
+  .wc-privacy-banner .wc-privacy-button { flex-basis: 100%; }
+  .wc-privacy-dialog { padding: 20px; }
+}
+
+/* Compact consent presentation; choices and storage behavior are unchanged. */
+.wc-privacy-banner { max-width: 1100px; padding: 20px; gap: 20px; }
+.wc-privacy-banner h2 { font-size: 1.1rem; margin-bottom: 6px; }
+.wc-privacy-banner p { font-size: .9rem; line-height: 1.5; margin-bottom: 6px; }
+.wc-privacy-banner > .wc-privacy-actions { flex-basis: 460px; }
+.wc-privacy-button { font-size: .875rem; padding: 11px 12px; }
+.wc-privacy-row { margin-block: 12px; }
+.wc-privacy-dialog p { line-height: 1.5; }
+@media (max-width: 700px) {
+ .wc-privacy-banner { position: static; margin: 0; border-radius: 0; border-inline: 0; max-height: none; box-shadow: none; padding: 20px; }
+ .wc-privacy-banner > .wc-privacy-actions { flex-basis: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ .wc-privacy-banner .wc-privacy-button:last-child { grid-column: 1 / -1; }
+}

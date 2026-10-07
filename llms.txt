@@ -1,6 +1,6 @@
 # WebCrawlers
 
-> WebCrawlers offers a supervised search visibility repair pilot for one small
+> WebCrawlers offers a founder-led AI visibility audit and agreed repair pilot for one small
 > business website. Adam works with the owner to inspect up to 30 pages in one
 > language, agree on a few changes, approve release, and review the affected
 > live pages. Setup and the repair sprint are quoted separately. Rankings,
@@ -12,8 +12,9 @@ The current public offer is an Adam-led audit and repair pilot. Content work is 
 
 ## Pages
 
+- [About us](https://webcrawlers.tech/about): founder-led AI visibility audits and agreed repairs, founded by Adam Krestol
 - [Project inquiry](https://webcrawlers.tech/start): business, website, goals and contact details
-- [Example deliverable](https://webcrawlers.tech/example): a labeled fictional finding and proposed repair
+- [Example deliverable](https://webcrawlers.tech/example): dated own-site email-link repair, coverage and measurement limits
 - [Privacy](https://webcrawlers.tech/privacy): inquiry information and contact for data requests
 - [Service details](https://webcrawlers.tech/service): scope, quotes, access and publication
 
