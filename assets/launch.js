@@ -19,10 +19,10 @@ if (form) {
   const values=Object.fromEntries(new FormData(form));
   const goals=Array.from(form.querySelectorAll('[name=goals]:checked'),x=>x.value);
   const note=[`Business: ${values.business}`,`Website: ${values.website||'Not supplied'}`,`Offer: ${values.offering}`,`Goals: ${goals.join(', ')||'Discuss together'}`,`Context: ${values.context||'None'}`].join('\n');
-  const current=JSON.stringify({name:values.name,email:values.email,note,lang:'en',consent:true,_hp:values._hp});
+  const current=JSON.stringify({name:values.name,email:values.email,note,lang:'en',consent:$('consent').checked===true,_hp:values._hp});
   if(requestPayload && current!==requestPayload)requestId=crypto.randomUUID();requestPayload=current;
   const payload={...JSON.parse(current),request_id:requestId};busy=true;form.querySelectorAll('button').forEach(b=>b.disabled=true);message.textContent='Sending your request…';
-  try{const response=await fetch('https://webcrawlers-leads.adamkrestol.workers.dev/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:AbortSignal.timeout(15000)});const result=await response.json().catch(()=>({}));if(!response.ok||!result.ok)throw new Error(result.error||'Your request could not be accepted.');submitted={...values,goals,requestId};form.hidden=true;$('form-success').hidden=false;$('sent-email').textContent=values.email;$('request-ref').textContent=`Your reference: ${requestId.slice(0,8)}`;$('form-success').focus();}
+  try{const response=await fetch('https://intake.webcrawlers.tech/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:AbortSignal.timeout(15000)});const result=await response.json().catch(()=>({}));if(!response.ok||result.ok!==true||result.reference!==requestId)throw new Error(result.error||'Your request could not be accepted.');submitted={...values,goals,requestId};form.hidden=true;$('form-success').hidden=false;$('sent-email').textContent=values.email;$('request-ref').textContent=`Your reference: ${requestId}`;$('form-success').focus();}
   catch(error){message.textContent=error.name==='TimeoutError'?'We could not confirm receipt. Your details are still here. Retry with the same reference, or email hello@webcrawlers.tech.':`${error.message||'Connection failed.'} Your details are still here. Try again or email hello@webcrawlers.tech.`;}
   finally{busy=false;form.querySelectorAll('button').forEach(b=>b.disabled=false);}
  });
