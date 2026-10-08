@@ -562,7 +562,7 @@ body > main > .hero .trust { max-width: 70ch; font-size: 14px; }
   .brand-intake .intake-layout aside .intro { margin-bottom: 20px; font-size: 16px; }
   .brand-intake .intake-progress { margin: 20px 0 0; }
   .brand-intake .intake-progress li { font-size: 12px; }
-  .intake-art { display: none; }
+  .intake-art { display: block; }
   .brand-intake .intake-card { padding: 26px 20px; }
   .brand-intake .intake-card h2 { font-size: 26px; }
   .brand-locale > nav .wrap { padding-inline: 20px; }
@@ -574,4 +574,49 @@ body > main > .hero .trust { max-width: 70ch; font-size: 14px; }
   .brand-locale .contact-panel { padding: 26px 20px; }
   .brand-locale .scope-list li { padding: 22px; }
   .brand-locale .locale-copy .trust { font-size: 13px; }
+}
+
+/* Original generated scenes, 8 October. Captions distinguish artwork from evidence. */
+.generated-art { min-width: 0; margin: 0; background: var(--surface); }
+.generated-art img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
+.brand-visual.generated-art, .page-art.generated-art, .locale-art.generated-art { overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); box-shadow: 0 12px 32px #20372f06; }
+.page-art.generated-art img, .locale-art.generated-art img { border-radius: 0; }
+.generated-art .art-caption { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 0; padding: 15px 22px; border-top: 1px solid var(--line); color: var(--muted); background: var(--surface); text-align: start; font-size: 12px; line-height: 1.5; }
+.generated-art .illustration-tag { flex: none; border-color: #c6d5c5; background: #eef2e5; color: var(--accent2); font-size: 10px; line-height: 1.5; white-space: nowrap; }
+.generated-art .locale-art-caption { margin: 0; padding: 12px 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; text-align: end; }
+.brand-home .generated-home-hero { grid-template-columns: .92fr 1.08fr; gap: 48px; }
+.generated-page-hero { grid-template-columns: .95fr 1.05fr; gap: 48px; }
+.generated-page-hero > div { min-width: 0; }
+.evidence-hero .intro { margin-bottom: 16px; }
+.faq-document { max-width: 1120px; }
+.faq-document > .page-hero { margin-bottom: 32px; }
+.reading-document > .on-page { max-width: 84ch; }
+.guide-header { margin-bottom: 36px; }
+.guide-document .guide-hero { grid-template-columns: .85fr 1.15fr; margin-bottom: 28px; }
+.guide-hero h1 { font-size: clamp(40px, 4.2vw, 56px); max-width: 16ch; }
+.information-hero h1 { font-size: clamp(40px, 4.4vw, 58px); }
+.error-document { padding-block: 72px 88px; }
+.error-hero { margin-bottom: 0; min-height: 400px; }
+.brand-intake .intake-art.generated-art { margin: 26px 0 24px; overflow: hidden; border: 1px solid #607e65; border-radius: 18px; }
+.brand-intake .intake-art .art-caption { padding: 11px 16px; }
+.brand-intake .intake-progress { margin-bottom: 0; }
+@media (max-width: 960px) {
+  .brand-home .generated-home-hero, .generated-page-hero, .guide-document .guide-hero { grid-template-columns: 1fr; gap: 28px; }
+  .generated-page-hero .page-art { width: 100%; max-width: 680px; }
+  .guide-hero h1 { max-width: 20ch; }
+  .error-hero { min-height: 0; }
+}
+@media (max-width: 620px) {
+  .brand-visual.generated-art, .page-art.generated-art, .locale-art.generated-art { border-radius: 20px; }
+  .generated-art .art-caption { gap: 10px; padding: 12px 16px; font-size: 11px; }
+  .generated-art .illustration-tag { font-size: 10px; padding: 3px 8px; }
+  .generated-art .locale-art-caption { padding: 10px 16px; }
+  .generated-page-hero .page-art { max-width: none; }
+  .guide-hero h1, .information-hero h1 { font-size: clamp(35px, 9.5vw, 45px); max-width: none; }
+  .guide-header { margin-bottom: 28px; }
+  .error-document { padding-block: 44px 56px; }
+  .brand-intake .intake-art.generated-art { display: block; margin: 20px 0; border-radius: 16px; }
+  .brand-intake .intake-art img { height: 144px; object-fit: contain; }
+  .brand-intake .intake-art .art-caption { padding: 9px 12px; font-size: 10px; }
+  .brand-intake .intake-progress { gap: 12px; margin-block: 0; }
 }
