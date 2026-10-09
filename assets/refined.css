@@ -620,3 +620,49 @@ body > main > .hero .trust { max-width: 70ch; font-size: 14px; }
   .brand-intake .intake-art .art-caption { padding: 9px 12px; font-size: 10px; }
   .brand-intake .intake-progress { gap: 12px; margin-block: 0; }
 }
+
+/* Business-owner copy and three-stage pricing, 9 October. */
+.evidence-hero .actions { margin-top: 24px; }
+.pricing-document .pricing-example { max-width: 72ch; margin-block: 0 32px; padding: 20px 24px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel2); font-size: 16px; }
+.pricing-cards.pricing-stages { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.pricing-stages .quote-card { min-width: 0; padding: 30px; }
+.pricing-stages .quote-card h2 { font-size: 26px; line-height: 1.2; letter-spacing: -.035em; margin-bottom: 18px; }
+.pricing-stages .quote-card > p:not(.eyebrow) { font-size: 15px; line-height: 1.65; margin-bottom: 24px; }
+.pricing-stages .quote-card .check-list { margin-block: 0; padding-top: 14px; }
+.pricing-stages .quote-card .check-list li { font-size: 14px; line-height: 1.6; }
+.pricing-stages .agreement-card { background: #eef2e5; border-color: #d2ddca; }
+.pricing-stages .delivery-card > p:not(.eyebrow) { color: #e0eadb; }
+.pricing-details, .scope-card > a.pricing-details {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  min-height: 48px; width: fit-content; max-width: 100%; padding: 13px 18px;
+  border: 1px solid #9bb29d; border-radius: 12px; color: var(--accent2); font-size: 15px; font-weight: 600; line-height: 1.4; text-decoration: none;
+  background-color: var(--surface);
+  background-image: linear-gradient(115deg, #e5eddd7a, transparent 70%), repeating-linear-gradient(135deg, #246b5808 0 1px, transparent 1px 9px);
+  box-shadow: 0 3px 8px #20372f08;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+.pricing-details span { font-size: inherit; }
+.pricing-details svg { display: block; width: 19px; height: 19px; flex: 0 0 19px; }
+.pricing-details .pricing-arrow { transition: transform 160ms ease; }
+.pricing-details:hover, .scope-card > a.pricing-details:hover { color: var(--accent2); background-color: #edf2e6; border-color: var(--accent); box-shadow: 0 6px 14px #20372f10; transform: translateY(-2px); }
+.pricing-details:hover .pricing-arrow { transform: translateX(3px); }
+.pricing-details:active, .scope-card > a.pricing-details:active { transform: translateY(1px); box-shadow: 0 1px 3px #20372f0a; }
+.pricing-details:focus-visible { outline: 3px solid #155a97; outline-offset: 4px; }
+.brand-locale .locale-context { max-width: 46ch; color: var(--muted); font-size: 15px; line-height: 1.6; margin-block: 16px 24px; }
+@media (max-width: 1050px) {
+  .pricing-cards.pricing-stages { grid-template-columns: 1fr; }
+  .pricing-stages .quote-card { padding: 28px; }
+  .pricing-stages .quote-card h2 { max-width: 26ch; }
+  .pricing-stages .quote-card > p:not(.eyebrow) { max-width: 60ch; }
+}
+@media (max-width: 620px) {
+  .pricing-cards.pricing-stages { gap: 16px; }
+  .pricing-stages .quote-card { padding: 28px 24px; }
+  .pricing-document .pricing-example { padding: 20px; margin-bottom: 24px; font-size: 15px; }
+  .pricing-details, .scope-card > a.pricing-details { padding-inline: 15px; gap: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pricing-details, .pricing-details:hover, .pricing-details:active,
+  .scope-card > a.pricing-details:hover, .scope-card > a.pricing-details:active,
+  .pricing-details .pricing-arrow, .pricing-details:hover .pricing-arrow { transform: none; transition: none; }
+}

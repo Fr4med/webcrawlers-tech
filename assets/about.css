@@ -75,3 +75,7 @@
 @media (max-width: 620px) {
   .founder-art.generated-art .art-caption { padding: 12px 18px; }
 }
+
+/* Adam's approved profile photo uses the existing founder details slot. */
+.founder-avatar { display: block; width: 64px; height: 64px; flex: 0 0 64px; object-fit: cover; border: 1px solid #c2d2c3; border-radius: 18px; background: var(--panel2); }
+@media (max-width: 620px) { .founder-avatar { width: 56px; height: 56px; flex-basis: 56px; border-radius: 16px; } }
