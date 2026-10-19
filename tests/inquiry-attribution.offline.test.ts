@@ -9,7 +9,7 @@ function context(script:string,path='/start',search='',referrer='',active=false,
  const english=script==='launch.js';const form=node(english?'project-form':'lead-form');
  const fields:any={name:'Fixture owner',email:'fixture@example.test',note:'TEST P04 offline',consent:'on',_hp:'',business:'Fixture business',offering:'Fixture service',website:'',context:'Fixture context'};
  const sent:any[]=[];let mode='match';
- let cookie=initialCookie??(allow===null?'':'webcrawlers_privacy='+encodeURIComponent(JSON.stringify({schemaVersion:1,policyRevision:'2026-10-07',decidedAt:clock,attribution:allow})));
+ let cookie=initialCookie??(allow===null?'':'webcrawlers_privacy='+encodeURIComponent(JSON.stringify({schemaVersion:2,policyRevision:'2026-10-20',analytics:false,decidedAt:clock,attribution:allow})));
  const writes:string[]=[],events:any[]=[];
  const document:any={referrer,readyState:'loading',body:{dataset:unavailable?{privacyAttribution:'unavailable'}:{}},documentElement:{lang:english?'en':'de'},getElementById(id:string){if(id==='project-form'||id==='lead-form')return active&&id===form.id?form:null;return node(id);},querySelector(){return null;},querySelectorAll(){return [];},addEventListener(){},dispatchEvent(event:any){events.push(event);},createElement(){return node('created');}};
  Object.defineProperty(document,'cookie',{get:()=>cookie,set:(value:string)=>{writes.push(value);if(!blockedCookies)cookie=value.split(';')[0];}});
@@ -34,7 +34,7 @@ for(const script of ['launch.js','inquiry.js']){
   for(const choice of [null,false]){
    const storage=new Map([[optionalKey,JSON.stringify({capturedAt:Date.now(),context:{schemaVersion:1,landingPath:'/',utmSource:'legacy'}})],['necessary-retry-reference','fixture-reference']]);
    const c=context(script,script==='launch.js'?'/start':'/de/','?utm_source=google&utm_campaign=private','https://chatgpt.com/c/private-chat',true,storage,Date.now(),choice);
-   expect(c.privacy.getPreferences()).toEqual({essential:true,attribution:false});expect(c.privacy.allows('essential')).toBe(true);expect(c.privacy.allows('analytics')).toBe(false);
+   expect(c.privacy.getPreferences()).toEqual({essential:true,attribution:false,analytics:false});expect(c.privacy.allows('essential')).toBe(true);expect(c.privacy.allows('analytics')).toBe(false);
    expect(storage.has(optionalKey)).toBe(false);expect(storage.get('necessary-retry-reference')).toBe('fixture-reference');expect(c.writes.length).toBe(0);
    if(script==='launch.js'){c.nodes.get('form-next').events.click();c.nodes.get('form-next').events.click();}
    await c.form.events.submit({preventDefault(){}});
@@ -82,12 +82,12 @@ test('preference cookie is bounded, versioned, host-only, secure on HTTPS and co
  c.privacy.setPreferences({attribution:true});const header=c.writes.at(-1)!;
  expect(header).toContain('; Path=/');expect(header).toContain('; Max-Age=15552000');expect(header).toContain('; SameSite=Lax');expect(header).toContain('; Secure');expect(header).not.toContain('Domain=');
  const saved=JSON.parse(decodeURIComponent(c.cookie().split('=')[1]));
- expect(Object.keys(saved).sort()).toEqual(['schemaVersion','policyRevision','decidedAt','attribution'].sort());expect(saved.schemaVersion).toBe(1);expect(saved.policyRevision).toBe('2026-10-07');expect(saved.attribution).toBe(true);
+ expect(Object.keys(saved).sort()).toEqual(['schemaVersion','policyRevision','decidedAt','attribution','analytics'].sort());expect(saved.schemaVersion).toBe(2);expect(saved.policyRevision).toBe('2026-10-20');expect(saved.attribution).toBe(true);
  expect(header.length).toBeLessThan(512);expect(header).not.toContain('fixture');expect(header).not.toContain('utmSource');expect(c.events.at(-1).detail.saved).toBe(true);
 });
 
 test('missing, malformed, future, outdated and expired preference cookies fail closed before source collection',()=>{
- const clock=Date.now(),valid={schemaVersion:1,policyRevision:'2026-10-07',decidedAt:clock,attribution:true};
+ const clock=Date.now(),valid={schemaVersion:2,policyRevision:'2026-10-20',analytics:false,decidedAt:clock,attribution:true};
  const encode=(record:any)=>'webcrawlers_privacy='+encodeURIComponent(JSON.stringify(record));
  const cookies=['','webcrawlers_privacy=bad','webcrawlers_privacy=%E0%A4%A',encode({...valid,decidedAt:clock+1}),encode({...valid,decidedAt:clock-15552000000}),encode({...valid,policyRevision:'old'}),encode({...valid,attribution:'true'}),encode({...valid,extra:true}),encode(['yes'])];
  for(const cookie of cookies){
@@ -110,7 +110,7 @@ test('a current explicit choice wins over an opposite old cookie when cookie wri
 
 test('customer pages without configured attribution cannot offer or enable nonfunctional optional context',()=>{
  const c=context('launch.js','/signup','?utm_source=qa','https://bing.com/',false,new Map(),Date.now(),true,false,true);
- expect(c.privacy.getPreferences()).toEqual({essential:true,attribution:false});expect(c.source()).toEqual({schemaVersion:1,landingPath:null,formPath:null});expect(c.storage.has(optionalKey)).toBe(false);
+ expect(c.privacy.getPreferences()).toEqual({essential:true,attribution:false,analytics:false});expect(c.source()).toEqual({schemaVersion:1,landingPath:null,formPath:null});expect(c.storage.has(optionalKey)).toBe(false);
  c.privacy.setPreferences({attribution:true});expect(c.privacy.allows('attribution')).toBe(false);expect(JSON.parse(decodeURIComponent(c.cookie().split('=')[1])).attribution).toBe(false);
 });
 for(const script of ['launch.js','inquiry.js']) {

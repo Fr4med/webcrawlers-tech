@@ -3,7 +3,7 @@
   if (window.WebCrawlersPrivacy) return;
 
   const cookieName = 'webcrawlers_privacy';
-  const policyRevision = '2026-10-07';
+  const policyRevision = '2026-10-20';
   const maxAgeSeconds = 180 * 24 * 60 * 60;
   const optionalStorageKey = 'webcrawlers-inquiry-entry-v1';
   const copy = {
@@ -80,12 +80,27 @@
       notStored: 'הדפדפן לא שמר את הבחירה. היא חלה על הדף הזה בלבד.'
     }
   };
+  const analyticsCopy = {
+    en: ['Optional website analytics', 'PostHog in the EU counts pages, traffic sources and enquiry steps. A random visit ID lasts up to 30 minutes in this tab. No form contents or recordings.', 'Allow optional features'],
+    de: ['Optionale Website-Analyse', 'PostHog in der EU zählt Seiten, Zugriffsquellen und Anfrageschritte. Eine zufällige Besuchskennung bleibt bis zu 30 Minuten in diesem Tab. Keine Formularinhalte oder Aufzeichnungen.', 'Optionale Funktionen erlauben'],
+    fr: ['Statistiques facultatives du site', 'PostHog dans l’UE compte les pages, les sources de trafic et les étapes des demandes. Un identifiant aléatoire reste dans cet onglet jusqu’à 30 minutes. Aucun contenu de formulaire ni enregistrement.', 'Autoriser les fonctions facultatives'],
+    pl: ['Opcjonalne statystyki witryny', 'PostHog w UE zlicza strony, źródła ruchu i etapy zapytań. Losowy identyfikator wizyty pozostaje w tej karcie do 30 minut. Bez treści formularzy i nagrań.', 'Zezwól na opcjonalne funkcje'],
+    sv: ['Valfri webbplatsanalys', 'PostHog i EU räknar sidor, trafikkällor och förfrågningssteg. Ett slumpmässigt besöks-ID finns i fliken i högst 30 minuter. Inget formulärinnehåll eller inspelningar.', 'Tillåt valfria funktioner'],
+    he: ['ניתוח שימוש אופציונלי באתר', 'PostHog באיחוד האירופי סופר דפים, מקורות תנועה ושלבים בפנייה. מזהה ביקור אקראי נשמר בלשונית עד 30 דקות. בלי תוכן טפסים ובלי הקלטות.', 'לאפשר תכונות אופציונליות']
+  };
+  for (const [lang, text] of Object.entries(analyticsCopy)) {
+    copy[lang].analytics = text[0];
+    copy[lang].analyticsText = text[1];
+    copy[lang].intro += ' ' + text[1];
+    copy[lang].vendors = {en:'No advertising cookies. Analytics needs your permission.', de:'Keine Werbe-Cookies. Analyse nur mit Ihrer Erlaubnis.', fr:'Aucun cookie publicitaire. Les statistiques nécessitent votre accord.', pl:'Bez reklamowych plików cookie. Statystyki wymagają Twojej zgody.', sv:'Inga reklamkakor. Analys kräver ditt tillstånd.', he:'בלי עוגיות פרסום. ניתוח השימוש מחייב הסכמה שלך.'}[lang];
+    copy[lang].allow = text[2];
+  }
   const language = (document.documentElement.lang || 'en').split('-')[0];
   const words = copy[language] || copy.en;
   let volatileChoice = null;
   let inquiryEntryContext = null;
   let inquiryEntryCapturedAt = null;
-  let banner, dialog, optionalInput, notice, returnFocus;
+  let banner, dialog, optionalInput, analyticsInput, notice, returnFocus;
 
   function optionalAvailable() {
     return document.body?.dataset.privacyAttribution !== 'unavailable';
@@ -94,10 +109,10 @@
     try { sessionStorage.removeItem(optionalStorageKey); } catch {}
   }
   function validChoice(record) {
-    const keys = ['schemaVersion', 'policyRevision', 'decidedAt', 'attribution'];
+    const keys = ['schemaVersion', 'policyRevision', 'decidedAt', 'attribution', 'analytics'];
     return record && typeof record === 'object' && !Array.isArray(record) && Object.keys(record).length === keys.length
-      && Object.keys(record).every(key => keys.includes(key)) && record.schemaVersion === 1 && record.policyRevision === policyRevision
-      && typeof record.attribution === 'boolean' && Number.isFinite(record.decidedAt) && record.decidedAt <= Date.now()
+      && Object.keys(record).every(key => keys.includes(key)) && record.schemaVersion === 2 && record.policyRevision === policyRevision
+      && typeof record.attribution === 'boolean' && typeof record.analytics === 'boolean' && Number.isFinite(record.decidedAt) && record.decidedAt <= Date.now()
       && Date.now() - record.decidedAt < maxAgeSeconds * 1000;
   }
   function readChoice() {
@@ -116,7 +131,7 @@
   }
   function getPreferences() {
     const record = currentChoice();
-    const preferences = {essential: true, attribution: optionalAvailable() && record?.attribution === true};
+    const preferences = {essential: true, attribution: optionalAvailable() && record?.attribution === true, analytics: optionalAvailable() && record?.analytics === true};
     if (!preferences.attribution) {
       clearOptionalContext();
       inquiryEntryContext = null;
@@ -183,12 +198,12 @@
     if (dialog?.open) dialog.close();
   }
   function setPreferences(choice = {}) {
-    const record = {schemaVersion: 1, policyRevision, decidedAt: Date.now(), attribution: optionalAvailable() && choice?.attribution === true};
+    const record = {schemaVersion: 2, policyRevision, decidedAt: Date.now(), attribution: optionalAvailable() && choice?.attribution === true, analytics: optionalAvailable() && choice?.analytics === true};
     let saved = false;
     try {
       document.cookie = cookieName + '=' + encodeURIComponent(JSON.stringify(record)) + '; Path=/; Max-Age=' + maxAgeSeconds + '; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
       const stored = readChoice();
-      saved = stored?.decidedAt === record.decidedAt && stored.attribution === record.attribution;
+      saved = stored?.decidedAt === record.decidedAt && stored.attribution === record.attribution && stored.analytics === record.analytics;
     } catch {}
     volatileChoice = saved ? null : record;
     if (!record.attribution) clearOptionalContext();
@@ -208,6 +223,7 @@
     if (!dialog) buildInterface();
     if (!dialog || dialog.open) return;
     if (optionalInput) optionalInput.checked = getPreferences().attribution;
+    if (analyticsInput) analyticsInput.checked = getPreferences().analytics;
     returnFocus = document.activeElement;
     dialog.showModal();
     dialog.querySelector('h2').focus();
@@ -262,10 +278,21 @@
       description.id = 'wc-privacy-attribution-description';
       row.append(label, description);
       dialog.append(row);
+      const analyticsRow = element('div', 'wc-privacy-row');
+      const analyticsLabel = element('label', 'wc-privacy-option');
+      analyticsInput = document.createElement('input');
+      analyticsInput.type = 'checkbox';
+      analyticsInput.id = 'wc-privacy-analytics';
+      analyticsInput.setAttribute('aria-describedby', 'wc-privacy-analytics-description');
+      analyticsLabel.append(analyticsInput, element('span', '', words.analytics));
+      const analyticsDescription = element('p', '', words.analyticsText);
+      analyticsDescription.id = 'wc-privacy-analytics-description';
+      analyticsRow.append(analyticsLabel, analyticsDescription);
+      dialog.append(analyticsRow);
     }
     const actions = element('div', 'wc-privacy-actions');
     actions.append(button(words.essential, () => setPreferences({attribution: false})));
-    if (available) actions.append(button(words.save, () => setPreferences({attribution: optionalInput.checked})));
+    if (available) actions.append(button(words.save, () => setPreferences({attribution: optionalInput.checked, analytics: analyticsInput.checked})));
     dialog.append(element('p', 'wc-privacy-small', words.vendors), element('p', 'wc-privacy-small', words.retention), actions, detailsLink(), button(words.close, closeSettings));
     dialog.addEventListener('close', () => {
       const target = returnFocus?.isConnected && !returnFocus.closest('[hidden]') ? returnFocus : document.querySelector('[data-cookie-settings]');
@@ -283,7 +310,7 @@
       heading.id = 'wc-privacy-banner-title';
       text.append(heading, element('p', '', words.intro), detailsLink());
       const choices = element('div', 'wc-privacy-actions');
-      choices.append(button(words.essential, () => setPreferences({attribution: false})), button(words.settings, openSettings), button(words.allow, () => setPreferences({attribution: true})));
+      choices.append(button(words.essential, () => setPreferences({attribution: false})), button(words.settings, openSettings), button(words.allow, () => setPreferences({attribution: true, analytics: true})));
       banner.append(text, choices);
       document.body.append(banner);
     }
@@ -293,7 +320,7 @@
     });
   }
 
-  window.WebCrawlersPrivacy = Object.freeze({cookieName, policyRevision, getPreferences, getInquiryContext, pendingReceiptMessage: reference => words.pending + ' ' + reference, hasChoice, allows: purpose => purpose === 'essential' || purpose === 'attribution' && getPreferences().attribution, openSettings, setPreferences});
+  window.WebCrawlersPrivacy = Object.freeze({cookieName, policyRevision, getPreferences, getInquiryContext, pendingReceiptMessage: reference => words.pending + ' ' + reference, hasChoice, allows: purpose => purpose === 'essential' || ['attribution', 'analytics'].includes(purpose) && getPreferences()[purpose], openSettings, setPreferences});
   // No optional data is read before this check, including context saved by an older page.
   getPreferences();
   captureInquiryEntry();

@@ -41,7 +41,7 @@
 .wc-privacy-row h3 { font-size: 1rem; margin: 0 0 8px; padding-inline-end: 95px; }
 .wc-privacy-row p { margin: 8px 0 0; }
 .wc-privacy-always { position: absolute; top: 16px; inset-inline-end: 16px; color: var(--accent, #246b58); font-size: .78rem; font-weight: 650; }
-.wc-privacy-option { display: flex; align-items: center; gap: 12px; font-weight: 600; cursor: pointer; }
+.wc-privacy-option { display: flex; align-items: center; gap: 12px; min-height: 44px; font-weight: 600; cursor: pointer; }
 .wc-privacy-option input { width: 20px; height: 20px; min-width: 20px; margin: 0; accent-color: var(--accent, #246b58); }
 .wc-privacy-dialog p.wc-privacy-small { font-size: .82rem; }
 .wc-privacy-notice { position: fixed; z-index: 100; bottom: 16px; inset-inline: 16px; max-width: 580px; margin: 0 auto; padding: 16px; font-size: .9rem; }
