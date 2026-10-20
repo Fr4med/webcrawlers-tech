@@ -3,7 +3,7 @@
   if (window.WebCrawlersPrivacy) return;
 
   const cookieName = 'webcrawlers_privacy';
-  const policyRevision = '2026-10-20';
+  const policyRevision = '2026-10-20.1';
   const maxAgeSeconds = 180 * 24 * 60 * 60;
   const optionalStorageKey = 'webcrawlers-inquiry-entry-v1';
   const copy = {
@@ -81,12 +81,12 @@
     }
   };
   const analyticsCopy = {
-    en: ['Optional website analytics', 'PostHog in the EU counts pages, traffic sources and enquiry steps. A random visit ID lasts up to 30 minutes in this tab. No form contents or recordings.', 'Allow optional features'],
-    de: ['Optionale Website-Analyse', 'PostHog in der EU zählt Seiten, Zugriffsquellen und Anfrageschritte. Eine zufällige Besuchskennung bleibt bis zu 30 Minuten in diesem Tab. Keine Formularinhalte oder Aufzeichnungen.', 'Optionale Funktionen erlauben'],
-    fr: ['Statistiques facultatives du site', 'PostHog dans l’UE compte les pages, les sources de trafic et les étapes des demandes. Un identifiant aléatoire reste dans cet onglet jusqu’à 30 minutes. Aucun contenu de formulaire ni enregistrement.', 'Autoriser les fonctions facultatives'],
-    pl: ['Opcjonalne statystyki witryny', 'PostHog w UE zlicza strony, źródła ruchu i etapy zapytań. Losowy identyfikator wizyty pozostaje w tej karcie do 30 minut. Bez treści formularzy i nagrań.', 'Zezwól na opcjonalne funkcje'],
-    sv: ['Valfri webbplatsanalys', 'PostHog i EU räknar sidor, trafikkällor och förfrågningssteg. Ett slumpmässigt besöks-ID finns i fliken i högst 30 minuter. Inget formulärinnehåll eller inspelningar.', 'Tillåt valfria funktioner'],
-    he: ['ניתוח שימוש אופציונלי באתר', 'PostHog באיחוד האירופי סופר דפים, מקורות תנועה ושלבים בפנייה. מזהה ביקור אקראי נשמר בלשונית עד 30 דקות. בלי תוכן טפסים ובלי הקלטות.', 'לאפשר תכונות אופציונליות']
+    en: ['Optional website analytics', 'PostHog in the EU and Google Analytics count public pages, traffic sources and enquiry steps. Visit identifiers and Google cookies last up to 30 minutes. No form contents, advertising or recordings.', 'Allow optional features'],
+    de: ['Optionale Website-Analyse', 'PostHog in der EU und Google Analytics zählen öffentliche Seiten, Zugriffsquellen und Anfrageschritte. Besuchskennungen und Google-Cookies gelten bis zu 30 Minuten. Keine Formularinhalte, Werbung oder Aufzeichnungen.', 'Optionale Funktionen erlauben'],
+    fr: ['Statistiques facultatives du site', 'PostHog dans l’UE et Google Analytics comptent les pages publiques, les sources de trafic et les étapes des demandes. Les identifiants de visite et cookies Google durent jusqu’à 30 minutes. Aucun contenu de formulaire, publicité ou enregistrement.', 'Autoriser les fonctions facultatives'],
+    pl: ['Opcjonalne statystyki witryny', 'PostHog w UE i Google Analytics zliczają publiczne strony, źródła ruchu i etapy zapytań. Identyfikatory wizyty i pliki cookie Google działają do 30 minut. Bez treści formularzy, reklam i nagrań.', 'Zezwól na opcjonalne funkcje'],
+    sv: ['Valfri webbplatsanalys', 'PostHog i EU och Google Analytics räknar offentliga sidor, trafikkällor och förfrågningssteg. Besöks-ID och Google-kakor gäller i upp till 30 minuter. Inget formulärinnehåll, reklam eller inspelningar.', 'Tillåt valfria funktioner'],
+    he: ['ניתוח שימוש אופציונלי באתר', 'PostHog באיחוד האירופי ו-Google Analytics סופרים דפים ציבוריים, מקורות תנועה ושלבים בפנייה. מזהי ביקור ועוגיות Google נשמרים עד 30 דקות. בלי תוכן טפסים, פרסום או הקלטות.', 'לאפשר תכונות אופציונליות']
   };
   for (const [lang, text] of Object.entries(analyticsCopy)) {
     copy[lang].analytics = text[0];

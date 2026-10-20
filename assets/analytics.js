@@ -1,8 +1,12 @@
-// Minimal PostHog Capture API integration. No remote SDK, autocapture or replay.
+// Explicit consented events for PostHog and GA4. No autocapture or replay.
 (() => {
   'use strict';
   if (window.WebCrawlersAnalytics) return;
   const config = window.WebCrawlersAnalyticsConfig;
+  const googleId = config?.googleMeasurementId === 'G-BN1WD64QZ5' ? config.googleMeasurementId : null;
+  const denied = {analytics_storage:'denied', ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied'};
+  let googleStarted = false, googleAllowed = false, googleFailed = false, googleClient = null;
+  if (googleId) window['ga-disable-' + googleId] = true;
   const storageKey = 'webcrawlers-analytics-session-v1';
   const lifetime = 30 * 60 * 1000;
   const paths = new Set(['/', '/start', '/about', '/ai-visibility-audit', '/ai-visibility-audit-pricing', '/example', '/privacy', '/cookies', '/service', '/how-it-works', '/faq', '/what-is-geo', '/he/', '/de/', '/fr/', '/pl/', '/sv/']);
@@ -14,7 +18,65 @@
   const pending = new Set();
   const once = new Set();
   let pageViewed = false, session = null;
+  function stopGoogle() {
+    if (!googleId) return;
+    window['ga-disable-' + googleId] = true;
+    if (googleStarted && googleAllowed) {
+      window.gtag('consent', 'update', denied);
+      // Drop any events queued before the library loaded. Never replay them after withdrawal.
+      for (let i = window.dataLayer.length - 1; i >= 0; i--) if (window.dataLayer[i]?.[0] === 'event') window.dataLayer.splice(i, 1);
+    }
+    googleAllowed = false;
+    for (const entry of document.cookie.split(';')) {
+      const name = entry.trim().split('=')[0];
+      if (/^wcga_ga(?:_[A-Z0-9]+)?$/.test(name)) document.cookie = name + '=; Max-Age=0; Path=/; Secure; SameSite=Lax';
+    }
+  }
+  function googleCapture(event, current, properties) {
+    if (!googleId || googleFailed) return;
+    try {
+      const safe = {
+        send_to:googleId, page_location:properties.$current_url, page_referrer:'', page_title:'WebCrawlers ' + properties.$pathname,
+        language:properties.language, source:properties.source, medium:properties.medium, campaign:properties.campaign,
+        viewport_group:properties.viewport_group, environment:properties.environment, schema_version:1,
+        ...(properties.step ? {step:properties.step} : {}), ...(properties.reason ? {reason:properties.reason} : {}),
+        ...(properties.environment === 'qa' ? {debug_mode:true} : {}),
+      };
+      window['ga-disable-' + googleId] = false;
+      if (!googleStarted) {
+        // This site has one Google destination. Fail closed if another integration already owns the globals.
+        if (window.gtag || window.dataLayer) { window['ga-disable-' + googleId] = true; return; }
+        window.dataLayer = [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('consent', 'default', denied);
+        window.gtag('set', {allow_google_signals:false, allow_ad_personalization_signals:false, ads_data_redaction:true, url_passthrough:false});
+        window.gtag('js', new Date());
+        window.gtag('consent', 'update', {...denied, analytics_storage:'granted'});
+        window.gtag('config', googleId, {
+          send_page_view:false, client_id:current.id, page_location:safe.page_location, page_referrer:'', page_title:safe.page_title,
+          allow_google_signals:false, allow_ad_personalization_signals:false, ignore_referrer:true,
+          campaign_source:current.source, campaign_medium:current.medium, campaign_name:current.campaign,
+          campaign_id:'', campaign_content:'', campaign_term:'',
+          cookie_domain:'none', cookie_prefix:'wcga', cookie_expires:1800, cookie_update:false, cookie_flags:'SameSite=Lax;Secure',
+          ...(properties.environment === 'qa' ? {debug_mode:true} : {}),
+        });
+        const script = document.createElement('script');
+        script.async = true; script.referrerPolicy = 'no-referrer';
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + googleId;
+        script.onerror = () => { googleFailed = true; window['ga-disable-' + googleId] = true; window.dataLayer.length = 0; };
+        googleStarted = true; googleAllowed = true;
+        googleClient = current.id;
+        document.head.append(script);
+      } else if (!googleAllowed || googleClient !== current.id) {
+        window.gtag('consent', 'update', {...denied, analytics_storage:'granted'});
+        window.gtag('config', googleId, {send_page_view:false, client_id:current.id});
+        googleAllowed = true; googleClient = current.id;
+      }
+      window.gtag('event', event === '$pageview' ? 'page_view' : event === 'enquiry_receipt_confirmed' ? 'generate_lead' : event, safe);
+    } catch { stopGoogle(); }
+  }
   function clear() {
+    stopGoogle();
     for (const controller of pending) controller.abort();
     pending.clear();
     session = null;
@@ -85,6 +147,7 @@
       };
       if (Number.isInteger(details.step) && details.step >= 1 && details.step <= 3) properties.step = details.step;
       if (['timeout', 'unconfirmed', 'invalid'].includes(details.reason)) properties.reason = details.reason;
+      googleCapture(event, current, properties);
       current.count++;
       try { sessionStorage.setItem(storageKey, JSON.stringify(current)); } catch {}
       const controller = new AbortController();
