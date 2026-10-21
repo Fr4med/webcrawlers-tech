@@ -14,7 +14,6 @@ The current public offer is an Adam-led audit and repair pilot. Content work is 
 
 - [About us](https://webcrawlers.tech/about): founder-led AI visibility audits and agreed repairs, founded by Adam Krestol
 - [Project inquiry](https://webcrawlers.tech/start): business, website, goals and contact details
-- [Example deliverable](https://webcrawlers.tech/example): dated own-site email-link repair, coverage and measurement limits
 - [Privacy](https://webcrawlers.tech/privacy): inquiry information and contact for data requests
 - [Service details](https://webcrawlers.tech/service): scope, quotes, access and publication
 
@@ -25,3 +24,5 @@ The current public offer is an Adam-led audit and repair pilot. Content work is 
 - [FAQ](https://webcrawlers.tech/faq): pilot scope, approvals, pricing, and measurement limits
 
 - [AI visibility audit](https://webcrawlers.tech/ai-visibility-audit): scope, checks, measurement and how to start
+
+- [Accessibility](https://webcrawlers.tech/accessibility): display controls, keyboard navigation and an alternative contact route

@@ -1,35 +1,12 @@
-# webcrawlers.tech — all crawlers welcome, including AI crawlers.
-# We practice what we sell: https://webcrawlers.tech/what-is-geo
-
+# Public business pages are available to search and AI crawlers.
+# Retired/development routes have no public content. Robots rules are not access control.
 User-agent: *
 Allow: /
-
-# AI / LLM crawlers — explicitly allowed
-User-agent: GPTBot
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-User
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Perplexity-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Bingbot
-Allow: /
+Disallow: /example
+Disallow: /evidence
+Disallow: /src/
+Disallow: /tests/
+Disallow: /assets/design-review/
+Disallow: /admin
 
 Sitemap: https://webcrawlers.tech/sitemap.xml

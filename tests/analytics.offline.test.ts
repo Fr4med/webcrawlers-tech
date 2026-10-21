@@ -66,7 +66,7 @@ test('unavailable storage does not break forms, and capture is bounded to 100 ev
  const c=setup({noStorage:true});c.privacy.setPreferences({analytics:true});for(let i=0;i<150;i++)c.capture('assessment_cta_clicked');expect(c.calls).toHaveLength(100);
 });
 test('all 18 pages load consent before analytics and form scripts; no personal API key is public',()=>{
- const pages=['index','start','about','ai-visibility-audit','ai-visibility-audit-pricing','example','privacy','cookies','service','how-it-works','faq','what-is-geo','404',...['he','de','fr','pl','sv'].map(x=>x+'/index')];
+ const pages=['index','start','about','ai-visibility-audit','ai-visibility-audit-pricing','accessibility','privacy','cookies','service','how-it-works','faq','what-is-geo','404',...['he','de','fr','pl','sv'].map(x=>x+'/index')];
  for(const page of pages){const html=readFileSync(new URL('../src/pages/'+page+'.html',import.meta.url),'utf8');expect(html.indexOf('cookie-preferences.js')).toBeLessThan(html.indexOf('analytics.js'));expect(html.indexOf('analytics.js')).toBeLessThan(html.indexOf('launch.js'));}
  expect(source('analytics-config.js')).not.toMatch(/phx_/);expect(source('analytics.js')).not.toMatch(/sendBeacon/);
 });

@@ -1,0 +1,12 @@
+# Keep source, development checks and retired examples out of the public site.
+# This repository uses GitHub Pages' existing branch/Jekyll deployment.
+exclude:
+  - src
+  - tests
+  - package.json
+  - build-launch.mjs
+  - build-refined.mjs
+  - generate-locales.mjs
+  - verify-site.mjs
+  - example.html
+  - assets/design-review
