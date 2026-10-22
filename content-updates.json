@@ -3,83 +3,83 @@
   "pages": {
     "index.html": {
       "date": "2026-10-22",
-      "sha256": "6d5482c7467dc5fd66fac3317f91b525bd54ebcde59309dc01c0be0a835e3275"
+      "sha256": "e22ce5171bb707be9222435112cb79af56317e16a290c011d56bc54b58c721d8"
     },
     "about.html": {
       "date": "2026-10-22",
-      "sha256": "b33e79a5c9ef036a00e202733cfa6342b3c9c0f26a2946b4ef6a7afc9d0e9773"
+      "sha256": "506849a331cc3354291b2e67401a78eedb2d3d0267251ac3d0e6c034ce0ae49d"
     },
     "ai-visibility-audit-pricing.html": {
       "date": "2026-10-22",
-      "sha256": "9d81a51bf4a8a87e4e2835ee6089079b77429fc642665cefb561831e7b27f6af"
+      "sha256": "db68dfcccfe9638adcc841c64ef787a38079a67096d27c94ca304cc62bd607f9"
     },
     "ai-visibility-audit.html": {
       "date": "2026-10-22",
-      "sha256": "bd4aa79aee34f7d4d4af589e8a3d50222b2e0d38f3c7eec178767a3ab452e6de"
+      "sha256": "2343c09128c4f58a56a1fbddfbf4678fed6af482a3491db0db1e2f2c16970d56"
     },
     "service.html": {
       "date": "2026-10-22",
-      "sha256": "54d37d87258dc9b2a0ca7d533bf038d8e265782b10af9ac0b2a56dbdacccc229"
+      "sha256": "83ff0fec3c08191c99e8b646b2aa5606122acc74884f7abceaa2aa4c0d28d9c1"
     },
     "how-it-works.html": {
       "date": "2026-10-22",
-      "sha256": "6392408d0b97452622dd4ecc631e8bb25b5afad2d1f1c67f8de675a778672e16"
+      "sha256": "7e7ebe1e8d0a520baf8a69996accd49f12ac4e8994d3290629bad9a320bdaf67"
     },
     "faq.html": {
       "date": "2026-10-22",
-      "sha256": "eb7afcb2b5da1f4d497776fb6a6787b4c3e4456053b2023a5ea41a8e1c0c1dde"
+      "sha256": "998e246d5325fa683226ca96f41cc4a1af8667f11554db04296b445b1bffb201"
     },
     "start.html": {
       "date": "2026-10-22",
-      "sha256": "9b3c1c44885b76709a4be5b25d4f00376ce3626f032282ca75638856721d4c4a"
+      "sha256": "1538bda3a06f8bc95191fc30917e61a71171ba244828a5b5ad9d6eaccb232860"
     },
     "what-is-geo.html": {
       "date": "2026-10-22",
-      "sha256": "8ec5c0164bee68968d8732626bd26312bb05b6befca921ab28707837fa3927e5"
+      "sha256": "d51c18713fd2a9d0f3600023019871a50c3c4d14ca09c49ebf990969c183eb6b"
     },
     "he/index.html": {
       "date": "2026-10-22",
-      "sha256": "cdc105b2c51627098d97c37ce84dd22faa70fe082440864868fdf3f876d9279d"
+      "sha256": "8d7b42a2cb18a845aca8a0b433092b4ceb2c4ecb28c181e79fc5ba5041dd11cc"
     },
     "de/index.html": {
       "date": "2026-10-22",
-      "sha256": "f0516028c7f449f68f7d83aab8e4b0cd6c439a3a79fd0804f4147d3aceb27bc1"
+      "sha256": "35d72419ca2d8dcd72be48f8b63aff19ee00e557294f3e4c4864d1748dd44fbe"
     },
     "fr/index.html": {
       "date": "2026-10-22",
-      "sha256": "48e5087fbdc6394cc75847a5d2f6752dab74c552b84d4791bba76198e4eca738"
+      "sha256": "898173afb4e97fa9214886be4ea2f9be9a269742eff9c9dd1ac877f8af839e20"
     },
     "pl/index.html": {
       "date": "2026-10-22",
-      "sha256": "f3a674442b0315c5a982418ba979f8d9455aa0f68bdee93a12b460d7841d14c4"
+      "sha256": "350a3bc50af78af99d152c2b42aa246c27b6ed3a99e315d92a0f022d3872c95a"
     },
     "sv/index.html": {
       "date": "2026-10-22",
-      "sha256": "4171dbc048867c2f15262ac2620bc0f20d8bfd81df5052e521ff4a9bcffb35e5"
+      "sha256": "4d0e6a9de98dafb4c9eac2f7008a0f0286d57a87d0fe730cabfe43c1629f75d1"
     },
     "accessibility.html": {
       "date": "2026-10-22",
-      "sha256": "06a4e0eaa6125a5d51616a7021b371a310199bd0f2e8686eef67c1bd8615b7da"
+      "sha256": "218aadaa2913a5beea377aa8d42574f7125503c4e8a4fb2f92c0b908a105ee7f"
     },
     "privacy.html": {
       "date": "2026-10-22",
-      "sha256": "ce73146b717721109d80492ef6720adef545b410104b82b5475e0a8f895b2e89"
+      "sha256": "4a1f0434801d7006c6b85b0c63290202461eee66f93f167352812faeed2a149c"
     },
     "cookies.html": {
       "date": "2026-10-22",
-      "sha256": "5abbc27bb548dd8a9ad848c181f29d07afb82899813af83cb176ee50ca0c1620"
+      "sha256": "f43a5200b03cec6abc7909435e5b27642156009e8e744f67ad4cb90e2b52ea7b"
     },
     "404.html": {
       "date": "2026-10-22",
-      "sha256": "b407b663ffbdd755d9309afa038b6df5ce86dd7d7dcc3c3c0eee0001ca1d487f"
+      "sha256": "9f1e37b051d6bdafceec257e58bc2b4a2ca11c80d6577b839c9026cc8ebb17b9"
     },
     "signin.html": {
       "date": "2026-10-22",
-      "sha256": "d3dc58cf91b17a41b64b66951603ffe357b3145cd32d833ab52956b1d7448c99"
+      "sha256": "376c776801c50060ddfa54c264e5f88bbf8a9048c4cb529709f01a291d1d34c7"
     },
     "signup.html": {
       "date": "2026-10-22",
-      "sha256": "6fb3c1a70a213724dcc049437e0bb1fb260593f0c11eeb9eb3084fb8ae866494"
+      "sha256": "a72eb003be7d424c1f3de38ee64dcaca0f66f9a6e7bc75823b59020bb67979be"
     }
   }
 }
