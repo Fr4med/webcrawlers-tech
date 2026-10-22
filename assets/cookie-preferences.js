@@ -95,6 +95,11 @@
     copy[lang].vendors = {en:'No advertising cookies. Analytics needs your permission.', de:'Keine Werbe-Cookies. Analyse nur mit Ihrer Erlaubnis.', fr:'Aucun cookie publicitaire. Les statistiques nécessitent votre accord.', pl:'Bez reklamowych plików cookie. Statystyki wymagają Twojej zgody.', sv:'Inga reklamkakor. Analys kräver ditt tillstånd.', he:'בלי עוגיות פרסום. ניתוח השימוש מחייב הסכמה שלך.'}[lang];
     copy[lang].allow = text[2];
   }
+  // Plain-language controls; provider details and lifetimes stay on /cookies.
+  const compactCopy = {"en":["Optional choices start off. You can send an enquiry with essential storage only.","Remembers your choice and keeps requested features working.","Enquiry source","Adds the page and source of your enquiry when you send it.","Website analytics","Counts visits and enquiry steps. No form text or recordings.","Your choice is saved for 180 days. You can change it anytime."],"de":["Optionale Funktionen sind aus. Anfragen funktionieren auch nur mit notwendigem Speicher.","Speichert Ihre Auswahl und ermöglicht angeforderte Funktionen.","Herkunft der Anfrage","Fügt beim Senden Seite und Herkunft Ihrer Anfrage hinzu.","Website-Statistiken","Zählt Besuche und Anfrageschritte. Keine Formulartexte oder Aufzeichnungen.","Ihre Auswahl gilt 180 Tage und kann jederzeit geändert werden."],"fr":["Les options sont désactivées. Le stockage essentiel suffit pour envoyer une demande.","Mémorise votre choix et permet les fonctions demandées.","Origine de la demande","Ajoute la page et la provenance lors de l’envoi de votre demande.","Statistiques du site","Compte les visites et les étapes. Aucun texte de formulaire ni enregistrement.","Votre choix est conservé 180 jours et peut être modifié à tout moment."],"pl":["Opcje dodatkowe są wyłączone. Zapytanie działa z samymi niezbędnymi danymi.","Zapamiętuje wybór i obsługuje potrzebne funkcje.","Źródło zapytania","Dodaje stronę i źródło przy wysyłaniu zapytania.","Statystyki strony","Liczy wizyty i kroki formularza. Bez treści formularza i nagrań.","Wybór jest zapisywany na 180 dni. Możesz go zmienić w każdej chwili."],"sv":["Valfria funktioner är avstängda. Du kan skicka en förfrågan med enbart nödvändig lagring.","Sparar ditt val och stöder funktioner du begär.","Förfrågans källa","Lägger till sidan och källan när förfrågan skickas.","Webbplatsstatistik","Räknar besök och steg i formuläret. Ingen formulärtext eller inspelning.","Ditt val sparas i 180 dagar. Du kan ändra det när som helst."],"he":["האפשרויות הנוספות כבויות. אפשר לשלוח פנייה עם אחסון חיוני בלבד.","שומר את הבחירה ומאפשר את הפעולות שביקשת.","מקור הפנייה","מצרף את העמוד ומקור הפנייה בעת השליחה.","נתוני שימוש באתר","סופר ביקורים ושלבים בפנייה. ללא תוכן הטופס או הקלטות.","הבחירה נשמרת ל-180 יום. אפשר לשנות אותה בכל עת."]};
+  for (const [lang, text] of Object.entries(compactCopy)) {
+    [copy[lang].intro,copy[lang].requiredText,copy[lang].optional,copy[lang].optionalText,copy[lang].analytics,copy[lang].analyticsText,copy[lang].retention]=text;
+  }
   const language = (document.documentElement.lang || 'en').split('-')[0];
   const words = copy[language] || copy.en;
   let volatileChoice = null;
@@ -265,7 +270,9 @@
     intro.id = 'wc-privacy-settings-intro';
     const required = element('section', 'wc-privacy-row');
     required.append(element('h3', '', words.required), element('span', 'wc-privacy-always', words.always), element('p', '', words.requiredText));
-    dialog.append(title, intro, required);
+    const content = element('div', 'wc-privacy-body');
+    content.append(intro, required);
+    dialog.append(title, content);
     if (available) {
       const row = element('div', 'wc-privacy-row');
       const label = element('label', 'wc-privacy-option');
@@ -277,7 +284,7 @@
       const description = element('p', '', words.optionalText);
       description.id = 'wc-privacy-attribution-description';
       row.append(label, description);
-      dialog.append(row);
+      content.append(row);
       const analyticsRow = element('div', 'wc-privacy-row');
       const analyticsLabel = element('label', 'wc-privacy-option');
       analyticsInput = document.createElement('input');
@@ -288,12 +295,15 @@
       const analyticsDescription = element('p', '', words.analyticsText);
       analyticsDescription.id = 'wc-privacy-analytics-description';
       analyticsRow.append(analyticsLabel, analyticsDescription);
-      dialog.append(analyticsRow);
+      content.append(analyticsRow);
     }
     const actions = element('div', 'wc-privacy-actions');
     actions.append(button(words.essential, () => setPreferences({attribution: false})));
     if (available) actions.append(button(words.save, () => setPreferences({attribution: optionalInput.checked, analytics: analyticsInput.checked})));
-    dialog.append(element('p', 'wc-privacy-small', words.vendors), element('p', 'wc-privacy-small', words.retention), actions, detailsLink(), button(words.close, closeSettings));
+    content.append(element('p', 'wc-privacy-small', words.retention));
+    const footer = element('div', 'wc-privacy-footer');
+    footer.append(actions, detailsLink(), button(words.close, closeSettings));
+    dialog.append(footer);
     dialog.addEventListener('close', () => {
       const target = returnFocus?.isConnected && !returnFocus.closest('[hidden]') ? returnFocus : document.querySelector('[data-cookie-settings]');
       target?.focus();

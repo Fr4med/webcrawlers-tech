@@ -53,6 +53,12 @@
 }
 
 /* Compact consent presentation; choices and storage behavior are unchanged. */
+.wc-privacy-dialog[open] {display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;max-height:calc(100svh - 32px);}
+.wc-privacy-body {min-height:0;overflow:auto;overscroll-behavior:contain;padding:2px 4px 4px;}
+.wc-privacy-footer {border-top:1px solid var(--line,#dce3da);padding-top:14px;margin-top:8px;background:var(--surface,#fffefa);display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+.wc-privacy-footer .wc-privacy-actions {width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
+.wc-privacy-footer > .wc-privacy-button {margin-inline-start:auto;flex:0 1 auto;}
+.wc-privacy-row h3 {padding-inline-end:85px;}
 .wc-privacy-banner { max-width: 1100px; padding: 20px; gap: 20px; }
 .wc-privacy-banner h2 { font-size: 1.1rem; margin-bottom: 6px; }
 .wc-privacy-banner p { font-size: .9rem; line-height: 1.5; margin-bottom: 6px; }

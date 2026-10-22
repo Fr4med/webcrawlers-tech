@@ -1,3 +1,4 @@
+import {updateSitemap} from './scripts/review-metadata.mjs';
 import {readFileSync,writeFileSync,existsSync,mkdirSync} from 'node:fs';
 import {dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -5,3 +6,5 @@ const files=['index.html','about.html','ai-visibility-audit.html','start.html','
 let changed=0;
 for(const file of files){const source=new URL('src/pages/'+file,import.meta.url),target=new URL(file,import.meta.url);const bytes=readFileSync(source);if(!existsSync(target)||!readFileSync(target).equals(bytes)){mkdirSync(dirname(fileURLToPath(target)),{recursive:true});writeFileSync(target,bytes);changed++;}}
 console.log(`Refined customer theme: ${files.length} source pages, ${changed} changed outputs.`);
+
+updateSitemap();

@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "pages": {
+    "index.html": {
+      "date": "2026-10-22",
+      "sha256": "6d5482c7467dc5fd66fac3317f91b525bd54ebcde59309dc01c0be0a835e3275"
+    },
+    "about.html": {
+      "date": "2026-10-22",
+      "sha256": "b33e79a5c9ef036a00e202733cfa6342b3c9c0f26a2946b4ef6a7afc9d0e9773"
+    },
+    "ai-visibility-audit-pricing.html": {
+      "date": "2026-10-22",
+      "sha256": "9d81a51bf4a8a87e4e2835ee6089079b77429fc642665cefb561831e7b27f6af"
+    },
+    "ai-visibility-audit.html": {
+      "date": "2026-10-22",
+      "sha256": "bd4aa79aee34f7d4d4af589e8a3d50222b2e0d38f3c7eec178767a3ab452e6de"
+    },
+    "service.html": {
+      "date": "2026-10-22",
+      "sha256": "54d37d87258dc9b2a0ca7d533bf038d8e265782b10af9ac0b2a56dbdacccc229"
+    },
+    "how-it-works.html": {
+      "date": "2026-10-22",
+      "sha256": "6392408d0b97452622dd4ecc631e8bb25b5afad2d1f1c67f8de675a778672e16"
+    },
+    "faq.html": {
+      "date": "2026-10-22",
+      "sha256": "eb7afcb2b5da1f4d497776fb6a6787b4c3e4456053b2023a5ea41a8e1c0c1dde"
+    },
+    "start.html": {
+      "date": "2026-10-22",
+      "sha256": "9b3c1c44885b76709a4be5b25d4f00376ce3626f032282ca75638856721d4c4a"
+    },
+    "what-is-geo.html": {
+      "date": "2026-10-22",
+      "sha256": "8ec5c0164bee68968d8732626bd26312bb05b6befca921ab28707837fa3927e5"
+    },
+    "he/index.html": {
+      "date": "2026-10-22",
+      "sha256": "cdc105b2c51627098d97c37ce84dd22faa70fe082440864868fdf3f876d9279d"
+    },
+    "de/index.html": {
+      "date": "2026-10-22",
+      "sha256": "f0516028c7f449f68f7d83aab8e4b0cd6c439a3a79fd0804f4147d3aceb27bc1"
+    },
+    "fr/index.html": {
+      "date": "2026-10-22",
+      "sha256": "48e5087fbdc6394cc75847a5d2f6752dab74c552b84d4791bba76198e4eca738"
+    },
+    "pl/index.html": {
+      "date": "2026-10-22",
+      "sha256": "f3a674442b0315c5a982418ba979f8d9455aa0f68bdee93a12b460d7841d14c4"
+    },
+    "sv/index.html": {
+      "date": "2026-10-22",
+      "sha256": "4171dbc048867c2f15262ac2620bc0f20d8bfd81df5052e521ff4a9bcffb35e5"
+    },
+    "accessibility.html": {
+      "date": "2026-10-22",
+      "sha256": "06a4e0eaa6125a5d51616a7021b371a310199bd0f2e8686eef67c1bd8615b7da"
+    },
+    "privacy.html": {
+      "date": "2026-10-22",
+      "sha256": "ce73146b717721109d80492ef6720adef545b410104b82b5475e0a8f895b2e89"
+    },
+    "cookies.html": {
+      "date": "2026-10-22",
+      "sha256": "5abbc27bb548dd8a9ad848c181f29d07afb82899813af83cb176ee50ca0c1620"
+    },
+    "404.html": {
+      "date": "2026-10-22",
+      "sha256": "b407b663ffbdd755d9309afa038b6df5ce86dd7d7dcc3c3c0eee0001ca1d487f"
+    },
+    "signin.html": {
+      "date": "2026-10-22",
+      "sha256": "d3dc58cf91b17a41b64b66951603ffe357b3145cd32d833ab52956b1d7448c99"
+    },
+    "signup.html": {
+      "date": "2026-10-22",
+      "sha256": "6fb3c1a70a213724dcc049437e0bb1fb260593f0c11eeb9eb3084fb8ae866494"
+    }
+  }
+}

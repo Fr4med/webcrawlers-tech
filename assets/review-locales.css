@@ -1,0 +1,36 @@
+/* Shared language navigation and the deliberate short translated enquiry. */
+.wc-language-bar { display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; padding-block:12px; border-bottom:1px solid var(--line); direction:ltr; }
+.wc-language-bar a { display:inline-flex; align-items:center; min-height:40px; padding:6px 12px; border:1px solid transparent; border-radius:8px; font-size:14px; line-height:1.4; color:var(--muted); }
+.wc-language-bar a:hover { background:var(--panel2); color:var(--text); }
+.wc-language-bar a[aria-current="page"] { border-color:#a9baab; background:var(--panel2); color:var(--text); font-weight:600; }
+.wc-destination-language { display:block; font-size:11px; font-weight:400; color:var(--muted); }
+.wc-shared-locale .site-header .nav { gap:22px; }
+.wc-shared-locale .site-header #navigation { gap:22px; }
+.wc-shared-locale .site-header #navigation > a:not(.button) { display:flex; flex-direction:column; align-items:flex-start; gap:2px; }
+.wc-shared-locale .brand { direction:ltr; letter-spacing:-1.1px; }
+.wc-shared-locale .brand svg { display:block; width:32px; height:32px; flex-shrink:0; }
+.wc-shared-locale .wc-locale-hero { padding-block:60px 64px; }
+.wc-shared-locale .wc-locale-hero h1 { font-size:clamp(36px,4.1vw,56px); }
+.wc-shared-locale .locale-copy { min-width:0; }
+.wc-shared-locale .locale-copy .intro { max-width:46ch; }
+.wc-shared-locale .locale-context { margin-block:18px 24px; }
+.wc-shared-locale .wc-locale-contact { display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:start; }
+.wc-shared-locale .wc-locale-quote .intro { max-width:64ch; }
+.wc-shared-locale main > .surface { padding-block:0; }
+.wc-shared-locale .contact-panel { min-width:0; padding:32px; }
+.wc-shared-locale .contact-panel label { display:block; margin-block:0 8px; font-weight:550; }
+.wc-shared-locale .contact-panel input:not([type="checkbox"]), .wc-shared-locale .contact-panel textarea { display:block; width:100%; padding:12px 14px; margin-block:0 22px; border:1px solid #7b907f; }
+.wc-shared-locale .contact-panel textarea { resize:vertical; }
+.wc-shared-locale .contact-panel .inquiry-consent { display:flex; align-items:flex-start; gap:12px; font-size:14px; font-weight:400; }
+.wc-shared-locale .inquiry-consent input { flex:0 0 20px; width:20px; margin-block:4px 0; }
+.wc-shared-locale .inquiry-consent a, .wc-shared-locale .micro a { text-decoration:underline; text-underline-offset:3px; }
+.wc-shared-locale .inquiry-reference { overflow-wrap:anywhere; }
+.wc-shared-locale #lead-msg:not(:empty) { margin-top:20px; }
+.wc-shared-locale .footer a { overflow-wrap:anywhere; }
+.wc-shared-locale .footer .wc-destination-language { display:inline; margin-inline-start:4px; }
+.wc-shared-locale .footer { margin-top:32px; }
+@media (max-width:850px) { .wc-shared-locale .site-header .nav:has(.account-signin) { gap:8px; } .wc-shared-locale .site-header #navigation { gap:8px; } }
+.wc-large-text .wc-locale-contact { grid-template-columns:1fr!important; }
+@media (max-width:1050px) { .wc-shared-locale .site-header #navigation { gap:14px; } .wc-shared-locale .nav nav { font-size:12px; } }
+@media (max-width:960px) { .wc-shared-locale .wc-locale-contact { grid-template-columns:1fr; gap:24px; } }
+@media (max-width:620px) { .wc-language-bar { gap:4px; padding-block:8px; } .wc-language-bar a { padding-inline:8px; font-size:13px; } .wc-shared-locale .wc-locale-hero { padding-block:30px 40px; gap:28px; } .wc-shared-locale .contact-panel { padding:24px 20px; } .wc-shared-locale .wc-locale-contact { gap:20px; } .wc-shared-locale .wc-locale-hero h1 { font-size:clamp(33px,9vw,44px); } }

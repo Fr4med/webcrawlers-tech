@@ -1,0 +1,24 @@
+/* Enquiry review improvements. Preserve the existing theme and receipt states. */
+.intake-card select {width:100%; min-height:48px; padding:12px; color:var(--text); background:var(--surface); border:1px solid #7b907f; border-radius:10px; font:inherit;}
+.intake-card select:focus-visible {outline:3px solid #155a97;outline-offset:3px;}
+.brief-review {flex-wrap:wrap;}
+.brief-summary {flex-basis:100%;min-width:0;}
+.brief-review-row {margin:0 0 10px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5;}
+.brief-review-row:first-child {font-weight:650;}
+.brief-review .button {min-height:44px;white-space:normal;}
+@media(max-width:700px){
+ .brand-intake .intake-layout {padding-top:20px;gap:20px;}
+ .brand-intake .intake-layout aside {padding:0;background:transparent;border:0;border-radius:0;overflow:visible;color:var(--text);}
+ .brand-intake .intake-layout aside .eyebrow {color:var(--muted);margin:0 0 8px;}
+ .brand-intake .intake-layout aside h1 {font-size:32px;line-height:1.1;margin:0 0 10px;letter-spacing:-.035em;color:#20372f;}
+ .brand-intake .intake-layout aside h1 br {display:none;}
+ .brand-intake .intake-layout aside h1 span {color:#20372f;-webkit-text-fill-color:#20372f;}
+ .brand-intake .intake-layout aside .intro {font-size:14px;line-height:1.5;margin:0;color:var(--muted);}
+ .brand-intake .intake-layout aside .intake-art,.brand-intake .intake-layout aside .back-link {display:none;}
+ .brand-intake .intake-progress {display:flex;gap:12px;justify-content:space-between;margin:16px 0 0;padding:0;}
+ .brand-intake .intake-progress li {font-size:11px;line-height:1.4;gap:4px;color:var(--muted);margin:0;}
+ .brand-intake .intake-progress li span {color:var(--accent);font-size:11px;}
+ .brand-intake .intake-progress li[aria-current] {color:var(--accent);font-weight:650;}
+ .brand-intake .intake-card {padding:20px;}
+ .brand-intake .intake-card h2 {font-size:25px;margin-top:8px;}
+}

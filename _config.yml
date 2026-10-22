@@ -3,6 +3,9 @@
 exclude:
   - src
   - tests
+  - scripts
+  - content-updates.json
+  - .local-checks
   - package.json
   - build-launch.mjs
   - build-refined.mjs
